@@ -38,7 +38,6 @@ public class NespressoTest {
         nespressoHomePage.AcceptCookieNespressoFR();
         nespressoHomePage.hoverOverNavigationMenuLink();
         nespressoHomePage.clickOnLink();
-
         nesspressoProductsPage.clickOnAddToCartButton();
         nesspressoProductsPage.setQuantity("20");
         nesspressoProductsPage.clickOnOKButton();

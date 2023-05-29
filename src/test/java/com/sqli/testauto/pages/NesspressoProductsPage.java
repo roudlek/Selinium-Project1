@@ -67,14 +67,14 @@ public class NesspressoProductsPage {
             System.out.println("stringNumberOfItemsInCartSpan is " + stringNumberOfItemsInCartSpan);
 
         }
-        public void getCartItemCount() {
-            clickOnFilledCart();
-            //find span text
-            String itemCountText = wait.until(ExpectedConditions.elementToBeClickable(cartCountElement)).getText();
-            String itemCountValue = itemCountText.replaceAll("[^0-9]", "");
-            int itemCount = Integer.parseInt(itemCountValue);
-            System.out.println(itemCount);
-        }
+//        public void getCartItemCount() {
+//            clickOnFilledCart();
+//            //find span text
+//            String itemCountText = wait.until(ExpectedConditions.elementToBeClickable(cartCountElement)).getText();
+//            String itemCountValue = itemCountText.replaceAll("[^0-9]", "");
+//            int itemCount = Integer.parseInt(itemCountValue);
+//            System.out.println(itemCount);
+//        }
 
         public void proceedToCheckout(){
             proceedToCheckoutButton.click();
