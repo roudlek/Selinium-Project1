@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class AppTest
 {
-    WebDriver driver ;
+    public WebDriver driver ;
 //    public static final String path = "/home/elidrissiabdelaziz/Desktop/chromedriver_linux64/chromedriver";
 
     public static void main(String[] args) {
@@ -78,13 +78,13 @@ public class AppTest
     @Test
     public void getNespresso() {
         driver.manage().window().maximize();
-        driver.get("https://www.nespresso.fr");
+        driver.get("https://www.nespresso.com/fr/en");
 
         WebDriverWait wait = new WebDriverWait(driver, 40);
 
 //         Accept cookie
-//        WebElement cookieAcceptButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("_evidon-banner-acceptbutton")));
-//        cookieAcceptButton.click();
+        WebElement cookieAcceptButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("_evidon-banner-acceptbutton")));
+        cookieAcceptButton.click();
 
         // Accept cookie only if it exist
 //        List<WebElement> cookieElements = driver.findElements(By.id("_evidon-banner-acceptbutton"));
@@ -100,13 +100,13 @@ public class AppTest
 
         // Hover over the navigation menu
         WebElement navigationMenuLink = wait.until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//a[contains(@class,'AccessibleLink HeaderNavigationBarItem__anchor') and contains(@href,'/en/order/capsules')]")));
+                .xpath("//a[contains(@class,'AccessibleLink HeaderNavigationBarItem__anchor') and contains(@href,'/capsules')]")));
         Actions action = new Actions(driver);
         action.moveToElement(navigationMenuLink).perform();
 
         // Click on the order link
         WebElement orderLink = wait.until(ExpectedConditions.elementToBeClickable(By.
-                xpath("//a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'capsules/original')]")));
+                xpath("//a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'capsules/')]")));
         orderLink.click();
 
         // Click on first product that appears
@@ -143,13 +143,10 @@ public class AppTest
         // Set quantity using input
         WebElement quantitySelector = wait.until(ExpectedConditions.elementToBeClickable(By.id("ta-quantity-selector__custom-field")));
 
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
 
         quantitySelector.sendKeys("20");
+
+        // click on ok button
         WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("ta-quantity-selector__custom-ok")));
         okButton.click();
 
@@ -197,10 +194,6 @@ public class AppTest
         Thread.sleep(3000);
         driver.manage().window().minimize();
     }
-//    @Test
-//    public void sayHello(){
-//        System.out.println("hello world");
-//    }
     @Test(priority = 3)
     public void navigateTo(){
         try {
@@ -211,8 +204,6 @@ public class AppTest
             e.printStackTrace();
         }
     }
-
-
     @AfterClass
     public void exit(){
 //        driver.quit();
