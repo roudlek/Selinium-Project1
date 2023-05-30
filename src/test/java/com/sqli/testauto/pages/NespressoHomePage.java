@@ -1,7 +1,6 @@
 package com.sqli.testauto.pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.NoSuchElementException;
+
 public class NespressoHomePage {
     private WebDriver driver;
     private WebDriverWait wait;
@@ -17,13 +18,13 @@ public class NespressoHomePage {
     WebElement navigationMenuLink;
     @FindBy(xpath = "//a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'capsules/original')]")
     WebElement orderLink;
-
     @FindBy(id = "_evidon-banner-acceptbutton")
-    WebElement cookieAcceptButton;
+    WebElement cookieAcceptButtonFR;
 
-    public void AcceptCookieNespressoFR(){
-        wait.until(ExpectedConditions.elementToBeClickable(cookieAcceptButton)).click();
-    }
+    @FindBy(id="_evidon-accept-button")
+    WebElement cookieAcceptButtonUK;
+
+
     public NespressoHomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 40);
@@ -39,8 +40,4 @@ public class NespressoHomePage {
     public void clickOnLink(){
         wait.until(ExpectedConditions.elementToBeClickable(orderLink)).click();
     }
-
-
-
-
 }
