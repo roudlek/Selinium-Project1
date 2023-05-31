@@ -1,16 +1,11 @@
-package com.sqli.testauto.pages;
+package com.sqli.testauto.nespressopages;
 
 import com.sqli.testauto.handlers.CookieHandler;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -44,17 +39,26 @@ public class NespressoTest {
     public void addToCartAndCheckoutInFR(){
         driver.manage().window().maximize();
         driver.get("https://www.nespresso.com/fr/en");
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
         cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
         nespressoHomePage.hoverOverNavigationMenuLink();
         nespressoHomePage.clickOnLink();
-        nesspressoProductsPage.clickOnAddToCartButton();
+
+        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Jamaica Blue Mountain");
+//        nesspressoProductsPage.clickOnAddToCartButton();
         nesspressoProductsPage.setQuantity("20");
         nesspressoProductsPage.clickOnOKButton();
+//
+//        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Vaniglia");
+        nesspressoProductsPage.clickOnAddToCartButton();
+        nesspressoProductsPage.setQuantity("100");
+        nesspressoProductsPage.clickOnOKButton();
+//
         nesspressoProductsPage.clickOnFilledCart();
-        nesspressoProductsPage.verifyItemCount();
-
-//        nesspressoProductsPage.getCartItemCount();
-        nesspressoProductsPage.proceedToCheckout();
+//        nesspressoProductsPage.verifyItemCountOfSelectedProduct("Jamaica Blue Mountain");
+//        nesspressoProductsPage.verifyItemCountOfSelectedProduct("Ristretto");
+////        nesspressoProductsPage.verifyItemCount();
+//
+////        nesspressoProductsPage.getCartItemCount();
+//        nesspressoProductsPage.proceedToCheckout();
     }
 }
