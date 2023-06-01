@@ -40,25 +40,29 @@ public class NespressoTest {
         driver.manage().window().maximize();
         driver.get("https://www.nespresso.com/fr/en");
         cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
+
         nespressoHomePage.hoverOverNavigationMenuLink();
         nespressoHomePage.clickOnLink();
 
-        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Jamaica Blue Mountain");
-//        nesspressoProductsPage.clickOnAddToCartButton();
+        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Coconut Flavour Over Ice");
         nesspressoProductsPage.setQuantity("20");
         nesspressoProductsPage.clickOnOKButton();
-//
-//        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Vaniglia");
-        nesspressoProductsPage.clickOnAddToCartButton();
-        nesspressoProductsPage.setQuantity("100");
-        nesspressoProductsPage.clickOnOKButton();
-//
         nesspressoProductsPage.clickOnFilledCart();
+        nesspressoProductsPage.verifyItemCountOfSelectedProduct("Coconut Flavour Over Ice");
+
+        nesspressoProductsPage.proceedToCheckout();
+
+
+
+//        nesspressoProductsPage.clickOnAddToCartButton();
+//        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Jamaica Blue Mountain");
+//        nesspressoProductsPage.clickOnAddToCartButton();
+//        nesspressoProductsPage.setQuantity("100");
+//        nesspressoProductsPage.clickOnOKButton();
 //        nesspressoProductsPage.verifyItemCountOfSelectedProduct("Jamaica Blue Mountain");
 //        nesspressoProductsPage.verifyItemCountOfSelectedProduct("Ristretto");
-////        nesspressoProductsPage.verifyItemCount();
-//
-////        nesspressoProductsPage.getCartItemCount();
-//        nesspressoProductsPage.proceedToCheckout();
+////      nesspressoProductsPage.verifyItemCount();
+////      nesspressoProductsPage.getCartItemCount();
+
     }
 }
