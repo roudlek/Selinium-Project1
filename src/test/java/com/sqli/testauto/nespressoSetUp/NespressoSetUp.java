@@ -1,25 +1,25 @@
-package com.sqli.testauto.nespressopages;
+package com.sqli.testauto.nespressoSetUp;
 
-import com.sqli.testauto.handlers.CookieHandler;
+import com.sqli.testauto.nespressopages.NespressoHomePage;
+import com.sqli.testauto.nespressopages.NesspressoProductsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class NespressoTest {
+public class NespressoSetUp {
     private WebDriver driver;
     private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
     private NesspressoProductsPage nesspressoProductsPage;
-    private CookieHandler cookieHandler;
-
-
-    @BeforeClass
+//    private CookieHandler cookieHandler;
+    @BeforeTest
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         option = new ChromeOptions();
@@ -31,28 +31,26 @@ public class NespressoTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
         nesspressoProductsPage = new NesspressoProductsPage(driver);
-        cookieHandler = new CookieHandler(driver);
-    }
-
-
-    @Test
-    public void addToCartAndCheckoutInFR(){
+//        cookieHandler = new CookieHandler(driver);
         driver.manage().window().maximize();
         driver.get("https://www.nespresso.com/fr/en");
-        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
+    }
+    @Test
+    public void addToCartAndCheckoutInFR(){
 
-        nespressoHomePage.hoverOverNavigationMenuLink();
-        nespressoHomePage.clickOnLink();
+//        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
+        nespressoHomePage.acceptCookie();
+
+        nespressoHomePage.goToProductsPage();
 
         nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Coconut Flavour Over Ice");
-        nesspressoProductsPage.setQuantity("20");
+        nesspressoProductsPage.setQuantity("50");
         nesspressoProductsPage.clickOnOKButton();
         nesspressoProductsPage.clickOnFilledCart();
-        nesspressoProductsPage.verifyItemCountOfSelectedProduct("Coconut Flavour Over Ice");
+
+        Assert.assertEquals("50",nesspressoProductsPage.verifyQuantityOfSelectedProduct("Coconut Flavour Over Ice"));
 
         nesspressoProductsPage.proceedToCheckout();
-
-
 
 //        nesspressoProductsPage.clickOnAddToCartButton();
 //        nesspressoProductsPage.clickOnAddToCartButtonOfSpecifiedProduct("Jamaica Blue Mountain");

@@ -47,14 +47,14 @@ public class NesspressoProductsPage {
 //        ((JavascriptExecutor) driver)
 //                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-        String xpathOfScroll = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
-        WebElement articleByProductName =  wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScroll)));
+        String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
 
+        // waiting for the article that has the specified title to be present in the page
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         // Scrolling down the page till the element is found
-        WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScroll));
-
+        WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
 
         jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
         String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton AddToBagButtonSmall')]";
@@ -64,29 +64,31 @@ public class NesspressoProductsPage {
 //        jse.executeScript("window.scrollTo(0, document.documentElement.scrollTop || document.body.scrollTop);");
     }
 
-    public void verifyItemCountOfSelectedProduct(String productName){
+    public String verifyQuantityOfSelectedProduct(String productName){
         //this works as well
         //article[.//h3[contains(text(),'Caramello')]]//div[@class='AddToBagButtonSmall__quantity']
-        String xpathOfDiv = "//h3[contains(text(),'" +
-        productName + "')]//ancestor::article//div[@class='AddToBagButtonSmall__quantity']";
-        String stringNumberOfItemsInButtonDiv = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfDiv))).getText();
+
+//        String DivOfAddToBagButtonXpath = "//h3[contains(text(),'" +
+//        productName + "')]//ancestor::article//div[@class='AddToBagButtonSmall__quantity']";
+//        String stringNumberOfItemsInButtonDiv = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(DivOfAddToBagButtonXpath))).getText();
 
         // this works as well
         //span[text()='Jamaica Blue Mountain']//ancestor::td//span[@class='MiniBasketItemPriceAndName__price-calc']
-        String xpathOfSpan = "//td[.//span[text()='"+ productName + "']]//span[@class='MiniBasketItemPriceAndName__price-calc']";
-        String stringNumberOfItemsInCartSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathOfSpan))).getText();
+        String SpanOfMiniBasketOfSpecifiedProduct = "//td[.//span[text()='"+ productName + "']]//span[@class='MiniBasketItemPriceAndName__price-calc']";
+        String stringNumberOfItemsInCartSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SpanOfMiniBasketOfSpecifiedProduct))).getText();
 
-        ///////
+        ////
         String substringInCartSpan = stringNumberOfItemsInCartSpan.substring(1, stringNumberOfItemsInCartSpan.indexOf(" "));
-        Assert.assertEquals(stringNumberOfItemsInButtonDiv, substringInCartSpan);
+//        Assert.assertEquals(stringNumberOfItemsInButtonDiv, substringInCartSpan);
         System.out.println("substringInCartSpan is " + substringInCartSpan);
-        System.out.println("stringNumberOfItemsInButtonDiv is " + stringNumberOfItemsInButtonDiv);
+//        System.out.println("stringNumberOfItemsInButtonDiv is " + stringNumberOfItemsInButtonDiv);
 
         ////
 //        Assert.assertTrue(stringNumberOfItemsInCartSpan.contains(stringNumberOfItemsInButtonDiv));
 
 //        Assert.assertTrue(stringNumberOfItemsInCartSpan.contains(stringNumberOfItemsInButtonDiv));
 //        System.out.println("stringNumberOfItemsInCartSpan is " + stringNumberOfItemsInCartSpan);
+        return substringInCartSpan;
     }
 
     public void clickOnAddToCartButton(){

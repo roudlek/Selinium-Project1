@@ -1,5 +1,6 @@
 package com.sqli.testauto.nespressopages;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,15 +18,20 @@ public class NespressoHomePage {
     WebElement orderLink;
     @FindBy(id = "_evidon-banner-acceptbutton")
     WebElement cookieAcceptButtonFR;
-
     @FindBy(id="_evidon-accept-button")
     WebElement cookieAcceptButtonUK;
-
-
     public NespressoHomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 40);
         PageFactory.initElements(driver, this);
+    }
+    public void acceptCookie(){
+        try {
+            WebElement CookieButton = wait.until(ExpectedConditions.elementToBeClickable(cookieAcceptButtonFR));
+            CookieButton.click();
+        } catch (TimeoutException e) {
+            System.out.println("Timeout occurred while waiting for the cookie accept button.");
+        }
     }
 
     public void hoverOverNavigationMenuLink(){
@@ -34,7 +40,12 @@ public class NespressoHomePage {
         action.moveToElement(navigationMenuLink).perform();
     }
 
+
     public void clickOnLink(){
         wait.until(ExpectedConditions.elementToBeClickable(orderLink)).click();
+    }
+    public void goToProductsPage(){
+        hoverOverNavigationMenuLink();
+        clickOnLink();
     }
 }
