@@ -40,7 +40,6 @@ public class NespressoHomePage {
         action.moveToElement(navigationMenuLink).perform();
     }
 
-
     public void clickOnLink(){
         wait.until(ExpectedConditions.elementToBeClickable(orderLink)).click();
     }

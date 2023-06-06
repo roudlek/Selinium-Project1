@@ -19,6 +19,8 @@ public class NesspressoProductsPage {
     WebElement okButton;
     @FindBy(xpath = "//button[contains(@class,'MiniBasketButton--not-empty')]")
     WebElement filledCart;
+    @FindBy(xpath = "//button[contains(@class,'MiniBasketButton')]")
+    WebElement cart;
     @FindBy(className = "MiniBasketItemCategory__item-count']")
     WebElement cartCountElement;
     @FindBy(id = "ta-mini-basket__checkout")
@@ -40,6 +42,15 @@ public class NesspressoProductsPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
+    }
+    public void addProductToCart(String productName, String quantity){
+        clickOnAddToCartButtonOfSpecifiedProduct(productName);
+//        clickOnAddToCartButtonOfSpecifiedProduct("");
+
+        setQuantity(quantity);
+//        setQuantity("50");
+        clickOnOKButton();
+        WaitForCartToBeUpdated();
     }
 
     public void clickOnAddToCartButtonOfSpecifiedProduct(String productName) {
@@ -112,13 +123,25 @@ public class NesspressoProductsPage {
             wait.until(ExpectedConditions.elementToBeClickable(okButton)).click();
         }
     }
+    public void WaitForCartToBeUpdated(){
+        //wait until value of filled cart change
+        String oldValueOfCartButton = cart.getText();
+        System.out.println(oldValueOfCartButton);
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(cart,oldValueOfCartButton)));
+        String newValueOfCartButton = cart.getText();
+        System.out.println(newValueOfCartButton);
+    }
+    public void WaitForTextToBeChanged(final WebElement element){
+        try {
+            String oldValueOfCTextOfWebElement = element.getText();
+            wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element,oldValueOfCTextOfWebElement)));
+        }
+        catch (Exception e){
+            System.out.println("Text of element didn't change");
+        }
+    }
 
     public void clickOnFilledCart(){
-//        try {
-//            Thread.sleep(4000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
         wait.until(ExpectedConditions.elementToBeClickable(filledCart)).click();
     }
 
@@ -149,5 +172,19 @@ public class NesspressoProductsPage {
 
     public void proceedToCheckout(){
         proceedToCheckoutButton.click();
+    }
+
+    public void enterOrPickQuantity(final String quantity){
+        try {
+            this.wait = new WebDriverWait(driver, 2);
+            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//[@id='ta-quantity-selector__predefined-" + quantity + "']")));
+            button.click();
+        }
+        catch (Exception e){
+            WebElement input = wait.until(ExpectedConditions.elementToBeClickable(By.id("ta-quantity-selector__custom-field")));
+            input.sendKeys(quantity);
+        }
+        WebElement ok = driver.findElement(By.id("ta-quantity-selector__custom-ok"));
+        ok.click();
     }
 }
