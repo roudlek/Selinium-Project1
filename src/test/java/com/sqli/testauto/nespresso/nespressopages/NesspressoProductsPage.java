@@ -1,4 +1,4 @@
-package com.sqli.testauto.nespressopages;
+package com.sqli.testauto.nespresso.nespressopages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;

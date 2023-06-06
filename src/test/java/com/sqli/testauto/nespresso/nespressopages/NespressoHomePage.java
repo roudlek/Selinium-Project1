@@ -1,4 +1,4 @@
-package com.sqli.testauto.nespressopages;
+package com.sqli.testauto.nespresso.nespressopages;
 
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;

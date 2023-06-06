@@ -16,17 +16,50 @@
 
   <dependencies>
 <!--    &lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>junit</groupId>-->
-<!--      <artifactId>junit</artifactId>-->
-<!--      <version>4.12</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
+      <!-- https://mvnrepository.com/artifact/junit/junit -->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.13.2</version>
+          <scope>test</scope>
+      </dependency>
 <!--    <dependency>-->
 <!--      <groupId>org.seleniumhq.selenium</groupId>-->
 <!--      <artifactId>selenium-http-jdk-client</artifactId>-->
 <!--      <version>4.8.1</version>-->
 <!--    </dependency>-->
+      <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-java</artifactId>
+          <version>7.1.0</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-jvm-deps</artifactId>
+          <version>1.0.6</version>
+          <scope>provided</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-junit</artifactId>
+          <version>7.12.1</version>
+          <scope>test</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+      <dependency>
+          <groupId>net.masterthought</groupId>
+          <artifactId>cucumber-reporting</artifactId>
+          <version>5.6.1</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-testng</artifactId>
+          <version>7.12.1</version>
+      </dependency>
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi</artifactId>
@@ -45,11 +78,11 @@
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.1.2</version>
-    </dependency>
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>4.1.1</version>
+      </dependency>
     <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
@@ -57,4 +90,30 @@
       <version>5.3.3</version>
     </dependency>
   </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.mastertought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>4.5.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                            <configuration>
+                                <projectName>Selinium Project1</projectName>
+                                <outputDirectory>${project.basedir}/target</outputDirectory>
+                                <inputDirectory>${project.basedir}/target</inputDirectory>
+                                <jsonFiles>
+                                    <param>**/*.json</param>
+                                </jsonFiles>
+                            </configuration>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

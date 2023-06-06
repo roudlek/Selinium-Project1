@@ -1,7 +1,7 @@
-package com.sqli.testauto.nespressoSetUp;
+package com.sqli.testauto.nespresso.nespressopages.nespressoSetUp;
 
-import com.sqli.testauto.nespressopages.NespressoHomePage;
-import com.sqli.testauto.nespressopages.NesspressoProductsPage;
+import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
+import com.sqli.testauto.nespresso.nespressopages.NesspressoProductsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.text.WordUtils;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -17,7 +17,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class NespressoSetUp {
@@ -60,15 +59,15 @@ public class NespressoSetUp {
     @Test(dataProvider = "testdata")
     public void addToCartAndCheckoutInFR(String productName) throws IOException {
 //        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
-//        nespressoHomePage.acceptCookie();
+        nespressoHomePage.acceptCookie();
         nespressoHomePage.goToProductsPage();
-        nesspressoProductsPage.addProductToCart(productName,"50");
+        nesspressoProductsPage.addProductToCart(productName,"130");
         nesspressoProductsPage.clickOnFilledCart();
 
 //        nesspressoProductsPage.addProductToCart("Coconut Flavour Over Ice","30");
 //        nesspressoProductsPage.clickOnFilledCart();
 //        Assert.assertEquals("30",nesspressoProductsPage.verifyQuantityOfSelectedProduct("Coconut Flavour Over Ice"));
-        Assert.assertEquals("50",nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
+        Assert.assertEquals("130",nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
 
         nesspressoProductsPage.proceedToCheckout();
     }
