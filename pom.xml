@@ -92,28 +92,28 @@
   </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>net.mastertought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>4.5.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>generate</goal>
-                            <configuration>
-                                <projectName>Selinium Project1</projectName>
-                                <outputDirectory>${project.basedir}/target</outputDirectory>
-                                <inputDirectory>${project.basedir}/target</inputDirectory>
-                                <jsonFiles>
-                                    <param>**/*.json</param>
-                                </jsonFiles>
-                            </configuration>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>net.mastertought</groupId>-->
+<!--                <artifactId>maven-cucumber-reporting</artifactId>-->
+<!--                <version>4.5.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>execution</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                            <configuration>-->
+<!--                                <projectName>Selinium Project1</projectName>-->
+<!--                                <outputDirectory>${project.basedir}/target</outputDirectory>-->
+<!--                                <inputDirectory>${project.basedir}/target</inputDirectory>-->
+<!--                                <jsonFiles>-->
+<!--                                    <param>**/*.json</param>-->
+<!--                                </jsonFiles>-->
+<!--                            </configuration>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

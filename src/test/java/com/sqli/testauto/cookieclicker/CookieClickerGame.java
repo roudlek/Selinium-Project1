@@ -20,8 +20,6 @@ public class CookieClickerGame {
 
     @BeforeTest
     public void setUp(){
-
-
         WebDriverManager.chromedriver().setup();
         option = new ChromeOptions();
         option.addArguments("--remote-allow-origins=*");
@@ -42,32 +40,13 @@ public class CookieClickerGame {
         WebElement englishButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("langSelect-EN")));
         englishButton.click();
 
-        this.wait = new WebDriverWait(driver, 0);
-        WebElement cookieButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("bigCookie")));
-        WebElement upgrade0 = wait.until(ExpectedConditions.elementToBeClickable(By.id("product0")));
-        WebElement upgrade1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("product1")));
-        WebElement upgrade2 = wait.until(ExpectedConditions.elementToBeClickable(By.id("product2")));
-        WebElement upgrade3 = wait.until(ExpectedConditions.elementToBeClickable(By.id("product3")));
-        WebElement upgrade4 = wait.until(ExpectedConditions.elementToBeClickable(By.id("product4")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("bigCookie")));
+
+
 
         for (int i = 0; i < 5000; i++) {
-            for(int j = 0;j <500; j++ ){
-                cookieButton.click();
-            }
-            if(upgrade0 != null){
-                upgrade0.click();
-            }
-            if(upgrade1 != null){
-                upgrade1.click();
-            }
-            if(upgrade2 != null){
-                upgrade2.click();
-            }
-            if(upgrade3 != null){
-                upgrade3.click();
-            }
-            if(upgrade4 != null){
-                upgrade4.click();
+            for(int j = 0;j <100; j++ ){
+                driver.findElement(By.id("bigCookie")).click();
             }
         }
     }
