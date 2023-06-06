@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
@@ -56,14 +57,10 @@ public class NespressoSetUp {
         return productName;
     }
 
-    @Test
-    public void addToCartAndCheckoutInFR() throws IOException {
+    @Test(dataProvider = "testdata")
+    public void addToCartAndCheckoutInFR(String productName) throws IOException {
 //        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
 //        nespressoHomePage.acceptCookie();
-        String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
-        String sheetName = "sheet1";
-        String productName = readProductNameFromExcel(filePath, sheetName);
-
         nespressoHomePage.goToProductsPage();
         nesspressoProductsPage.addProductToCart(productName,"50");
         nesspressoProductsPage.clickOnFilledCart();
@@ -74,5 +71,14 @@ public class NespressoSetUp {
         Assert.assertEquals("50",nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
 
         nesspressoProductsPage.proceedToCheckout();
+    }
+    @DataProvider(name = "testdata")
+    public Object[][] provideTestData() throws IOException {
+        String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
+        String sheetName = "sheet1";
+
+        String productName = readProductNameFromExcel(filePath, sheetName);
+
+        return new Object[][]{{productName}};
     }
 }
