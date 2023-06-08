@@ -3,10 +3,6 @@ package com.sqli.testauto.nespresso.nespressopages.nespressoSetUp;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
 import com.sqli.testauto.nespresso.nespressopages.NesspressoProductsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.lang3.text.WordUtils;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -40,34 +36,34 @@ public class NespressoSetUp {
         nesspressoProductsPage = new NesspressoProductsPage(driver);
 //        cookieHandler = new CookieHandler(driver);
         driver.manage().window().maximize();
-        driver.get("https://www.nespresso.com/fr/en");
+        String domain = "https://www.nespresso.com/fr/en";
+
+        driver.get(domain);
+
+
+//        Cookie cookie = new Cookie.Builder("myCookie", "value")
+//                .domain("www.nespresso.com")
+//                .expiresOn(new Date(2025, 10, 28))
+//                .isSecure(false)
+//                .path("/fr/en")
+//                .build();
+//        System.out.println(cookie.getName());
+//
+//        driver.manage().addCookie(cookie);
+
     }
-
-    private String readProductNameFromExcel(String filePath, String sheetName) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-        XSSFSheet sheet = workbook.getSheet(sheetName);
-        XSSFRow firstRow = sheet.getRow(0);
-        String productName = WordUtils.capitalize(firstRow.getCell(0).getStringCellValue());
-
-        workbook.close();
-        fileInputStream.close();
-
-        return productName;
-    }
-
     @Test(dataProvider = "testdata")
     public void addToCartAndCheckoutInFR(String productName) throws IOException {
 //        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
         nespressoHomePage.acceptCookie();
         nespressoHomePage.goToProductsPage();
-        nesspressoProductsPage.addProductToCart(productName,"130");
+        nesspressoProductsPage.addProductToCart(productName,"50");
         nesspressoProductsPage.clickOnFilledCart();
 
 //        nesspressoProductsPage.addProductToCart("Coconut Flavour Over Ice","30");
 //        nesspressoProductsPage.clickOnFilledCart();
 //        Assert.assertEquals("30",nesspressoProductsPage.verifyQuantityOfSelectedProduct("Coconut Flavour Over Ice"));
-        Assert.assertEquals("130",nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
+        Assert.assertEquals("50",nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
 
         nesspressoProductsPage.proceedToCheckout();
     }
@@ -76,8 +72,10 @@ public class NespressoSetUp {
         String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
         String sheetName = "sheet1";
 
-        String productName = readProductNameFromExcel(filePath, sheetName);
+        String productName = nesspressoProductsPage.readProductDataFromExcel(filePath, sheetName,1,0);
 
         return new Object[][]{{productName}};
     }
+
+
 }

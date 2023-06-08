@@ -1,11 +1,18 @@
 package com.sqli.testauto.nespresso.nespressopages;
 
+import org.apache.commons.lang3.text.WordUtils;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class NesspressoProductsPage {
     private WebDriver driver;
@@ -170,6 +177,18 @@ public class NesspressoProductsPage {
 //            System.out.println(itemCount);
 //        }
 
+    public String readProductDataFromExcel(String filePath, String sheetName, int rowNumber, int cellNumber) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+        XSSFSheet sheet = workbook.getSheet(sheetName);
+        XSSFRow firstRow = sheet.getRow(rowNumber);
+        String productName = WordUtils.capitalize(firstRow.getCell(cellNumber).getStringCellValue());
+
+        workbook.close();
+        fileInputStream.close();
+
+        return productName;
+    }
     public void proceedToCheckout(){
         proceedToCheckoutButton.click();
     }
@@ -187,4 +206,5 @@ public class NesspressoProductsPage {
         WebElement ok = driver.findElement(By.id("ta-quantity-selector__custom-ok"));
         ok.click();
     }
+
 }

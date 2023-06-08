@@ -47,7 +47,7 @@ public class ScrapTest {
 ////        cookieHandler = new CookieHandler(driver);
 
         driver.manage().window().maximize();
-        driver.get("https://www.nespresso.com/ch/en/order/capsules/original");
+        driver.get("https://www.nespresso.com/fr/en/order/capsules/original");
 //        driver.get("https://www.avito.ma/");
 //
 //        for (int i = 0; i < 10; i++) {

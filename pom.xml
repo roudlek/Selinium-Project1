@@ -23,24 +23,18 @@
           <version>4.13.2</version>
           <scope>test</scope>
       </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.seleniumhq.selenium</groupId>-->
-<!--      <artifactId>selenium-http-jdk-client</artifactId>-->
-<!--      <version>4.8.1</version>-->
-<!--    </dependency>-->
-      <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
       <dependency>
           <groupId>io.cucumber</groupId>
           <artifactId>cucumber-java</artifactId>
           <version>7.1.0</version>
           <scope>test</scope>
       </dependency>
-      <dependency>
-          <groupId>io.cucumber</groupId>
-          <artifactId>cucumber-jvm-deps</artifactId>
-          <version>1.0.6</version>
-          <scope>provided</scope>
-      </dependency>
+<!--      <dependency>-->
+<!--          <groupId>io.cucumber</groupId>-->
+<!--          <artifactId>cucumber-jvm-deps</artifactId>-->
+<!--          <version>1.0.6</version>-->
+<!--          <scope>provided</scope>-->
+<!--      </dependency>-->
       <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
       <dependency>
           <groupId>io.cucumber</groupId>
@@ -58,7 +52,7 @@
       <dependency>
           <groupId>io.cucumber</groupId>
           <artifactId>cucumber-testng</artifactId>
-          <version>7.12.1</version>
+          <version>7.3.0</version>
       </dependency>
       <dependency>
           <groupId>org.apache.poi</groupId>
@@ -92,28 +86,28 @@
   </dependencies>
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>net.mastertought</groupId>-->
-<!--                <artifactId>maven-cucumber-reporting</artifactId>-->
-<!--                <version>4.5.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>execution</id>-->
-<!--                        <phase>test</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                            <configuration>-->
-<!--                                <projectName>Selinium Project1</projectName>-->
-<!--                                <outputDirectory>${project.basedir}/target</outputDirectory>-->
-<!--                                <inputDirectory>${project.basedir}/target</inputDirectory>-->
-<!--                                <jsonFiles>-->
-<!--                                    <param>**/*.json</param>-->
-<!--                                </jsonFiles>-->
-<!--                            </configuration>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>4.5.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Demo Reports</projectName>
+                            <outputDirectory>${project.basedir}/target</outputDirectory>
+                            <inputDirectory>${project.basedir}/target</inputDirectory>
+                            <jsonFiles>
+                                <param>**/*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

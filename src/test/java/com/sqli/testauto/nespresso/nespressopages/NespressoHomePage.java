@@ -22,7 +22,7 @@ public class NespressoHomePage {
     WebElement cookieAcceptButtonUK;
     public NespressoHomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 40);
+        this.wait = new WebDriverWait(driver, 500);
         PageFactory.initElements(driver, this);
     }
     public void acceptCookie(){
