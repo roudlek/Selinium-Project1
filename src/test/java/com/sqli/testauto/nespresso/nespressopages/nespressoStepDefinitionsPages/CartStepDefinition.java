@@ -1,5 +1,6 @@
 package com.sqli.testauto.nespresso.nespressopages.nespressoStepDefinitionsPages;
 
+import com.sqli.testauto.nespresso.manageExcelData.ReadExcel;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
 import com.sqli.testauto.nespresso.nespressopages.NesspressoProductsPage;
 import io.cucumber.java.Before;
@@ -55,7 +56,7 @@ public class CartStepDefinition extends AbstractTestNGCucumberTests {
 
     @When("^user typed valid quantity (.+)$")
     public void user_typed_valid_quantity(String quantity_Typed) throws IOException {
-        nesspressoProductsPage.setQuantity(nesspressoProductsPage.readProductDataFromExcel(filePath,"sheet1",1,0));
+        nesspressoProductsPage.setQuantity(ReadExcel.readProductDataFromExcel(filePath,"sheet1",1,0));
     }
     @When("^user typed invalid quantity (.+)$")
     public void user_typed_invalid_quantity(String quantity) {
@@ -64,8 +65,8 @@ public class CartStepDefinition extends AbstractTestNGCucumberTests {
 
     @Then("^Assert that actual (.+) of specified product equal to (.+)$")
     public void assert_that_actual_of_specified_product_equal_to(String quantitytyped) throws Throwable {
-        String productName = nesspressoProductsPage.readProductDataFromExcel(filePath, "sheet1",1,0);
-        String finalQuantity = nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName);
+        String productName = ReadExcel.readProductDataFromExcel(filePath, "sheet1",1,0);
+        String finalQuantity = nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan(productName);
         Assert.assertEquals(quantitytyped,finalQuantity);
     }
 
@@ -81,8 +82,8 @@ public class CartStepDefinition extends AbstractTestNGCucumberTests {
 
     @And("^user clicked on add to cart button of specified product$")
     public void user_clicked_on_add_to_cart_button_of_specified_product() throws IOException {
-        String productName = nesspressoProductsPage.readProductDataFromExcel(filePath, "sheet1",0,0);
-        nesspressoProductsPage.addProductToCart(productName,"130");
+        String productName = ReadExcel.readProductDataFromExcel(filePath, "sheet1",0,0);
+        nesspressoProductsPage.addProductToCartWithValidQuantity(productName,"130");
     }
 
     @And("^clicked on ok button$")

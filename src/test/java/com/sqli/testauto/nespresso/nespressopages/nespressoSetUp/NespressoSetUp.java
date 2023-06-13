@@ -1,5 +1,6 @@
 package com.sqli.testauto.nespresso.nespressopages.nespressoSetUp;
 
+import com.sqli.testauto.nespresso.manageExcelData.ReadExcel;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
 import com.sqli.testauto.nespresso.nespressopages.NesspressoProductsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -9,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
@@ -20,7 +20,10 @@ public class NespressoSetUp {
     private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
     private NesspressoProductsPage nesspressoProductsPage;
-//    private CookieHandler cookieHandler;
+    String quantityInString;
+    int ValidQuantityInExcelFile;
+//    int InvalidQuantityInExcelFile;
+    int quantityOfSelectedProduct;
 
     @BeforeTest
     public void setUp() throws IOException {
@@ -34,6 +37,12 @@ public class NespressoSetUp {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
         nesspressoProductsPage = new NesspressoProductsPage(driver);
+
+//        ValidQuantityInExcelFile = Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(1));
+//        InvalidQuantityInExcelFile = Integer.parseInt(ReadExcel.getInvalidQuantityFromExcelFile());
+//        System.out.println("Quantity in Excel file in int: " + ValidQuantityInExcelFile);
+
+
 //        cookieHandler = new CookieHandler(driver);
         driver.manage().window().maximize();
         String domain = "https://www.nespresso.com/fr/en";
@@ -52,30 +61,62 @@ public class NespressoSetUp {
 //        driver.manage().addCookie(cookie);
 
     }
-    @Test(dataProvider = "testdata")
-    public void addToCartAndCheckoutInFR(String productName) throws IOException {
-//        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
+    public void addProductToCartWithValidQuantity(int rowNumber){
+        nesspressoProductsPage.addProductToCartWithValidQuantity
+                (ReadExcel.getProductNameFromExcelFile(rowNumber),
+                        String.valueOf(Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(rowNumber))));
+    }
+    public int GetQuantityOfSelectedProductInCartSpan(int rowNumber){
+        return Integer.parseInt(nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan(ReadExcel.getProductNameFromExcelFile(rowNumber)));
+    }
+
+    public int getValidQuantityFromExcelFile(int rowNumber){
+        return Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(rowNumber));
+    }
+    @Test
+    public void addMultipleProductsToCartFRWithValidQuantity(){
         nespressoHomePage.acceptCookie();
         nespressoHomePage.goToProductsPage();
-        nesspressoProductsPage.addProductToCart(productName,"50");
-        nesspressoProductsPage.clickOnFilledCart();
-
-//        nesspressoProductsPage.addProductToCart("Coconut Flavour Over Ice","30");
+        for (int rowNumberOfData = 1;rowNumberOfData <= 10; rowNumberOfData++){
+            addProductToCartWithValidQuantity(rowNumberOfData);
+            nesspressoProductsPage.clickOnFilledCart();
+            int quantityInSpan = GetQuantityOfSelectedProductInCartSpan(rowNumberOfData);
+            int quantityInExcel = getValidQuantityFromExcelFile(rowNumberOfData);
+            Assert.assertEquals(quantityInExcel, quantityInSpan );
+            nesspressoProductsPage.closeCart();
+        }
+    }
+//    @Test
+//    public void addToCartAndCheckoutInFRWithInvalidQuantityFixQuantityAndContinue(){
+////        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
+//
+//        nespressoHomePage.acceptCookie();
+//        nespressoHomePage.goToProductsPage();
+//        nesspressoProductsPage.addProductToCartWithEditedQuantity(productName, String.valueOf(InvalidQuantityInExcelFile));
 //        nesspressoProductsPage.clickOnFilledCart();
-//        Assert.assertEquals("30",nesspressoProductsPage.verifyQuantityOfSelectedProduct("Coconut Flavour Over Ice"));
-        Assert.assertEquals("50",nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
+//
+//        quantityOfSelectedProduct = Integer.parseInt(nesspressoProductsPage.verifyQuantityOfSelectedProduct(productName));
+//
+////        nesspressoProductsPage.addProductToCart("Coconut Flavour Over Ice","30");
+////        nesspressoProductsPage.clickOnFilledCart();
+////        Assert.assertEquals("30",nesspressoProductsPage.verifyQuantityOfSelectedProduct("Coconut Flavour Over Ice"));
+//        Assert.assertTrue(quantityOfSelectedProduct - InvalidQuantityInExcelFile <= 9 && quantityOfSelectedProduct - InvalidQuantityInExcelFile >= 0, "Quantity difference is not within the expected range.");
+//
+//
+//        nesspressoProductsPage.proceedToCheckout();
+//    }
 
-        nesspressoProductsPage.proceedToCheckout();
-    }
-    @DataProvider(name = "testdata")
-    public Object[][] provideTestData() throws IOException {
-        String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
-        String sheetName = "sheet1";
 
-        String productName = nesspressoProductsPage.readProductDataFromExcel(filePath, sheetName,1,0);
-
-        return new Object[][]{{productName}};
-    }
-
+//    @Test
+//    public void addToCartAndCheckoutInFRWithInvalidQuantityAndStop(){
+////        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);
+//
+//        nespressoHomePage.acceptCookie();
+//        nespressoHomePage.goToProductsPage();
+//        nesspressoProductsPage.addProductToCartWithInvalidQuantityAndStop(productName, String.valueOf(InvalidQuantityInExcelFile));
+//        // edit this
+//        Assert.assertTrue(InvalidQuantityInExcelFile ==  55 );
+//
+//    }
 
 }

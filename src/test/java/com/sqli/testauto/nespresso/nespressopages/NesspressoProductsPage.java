@@ -1,18 +1,11 @@
 package com.sqli.testauto.nespresso.nespressopages;
 
-import org.apache.commons.lang3.text.WordUtils;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.io.FileInputStream;
-import java.io.IOException;
 
 public class NesspressoProductsPage {
     private WebDriver driver;
@@ -22,7 +15,7 @@ public class NesspressoProductsPage {
 
     @FindBy(id = "ta-quantity-selector__custom-field")
     WebElement quantitySelector;
-    @FindBy(id = "ta-quantity-selector__custom-ok")
+    @FindBy(xpath = "//button[@class='QuantitySelectorCustomField__button-ok' and @id='ta-quantity-selector__custom-ok']")
     WebElement okButton;
     @FindBy(xpath = "//button[contains(@class,'MiniBasketButton--not-empty')]")
     WebElement filledCart;
@@ -43,19 +36,28 @@ public class NesspressoProductsPage {
     WebElement numberOfItemsInCartSpan;
 
 
-
-
     public NesspressoProductsPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
     }
-    public void addProductToCart(String productName, String quantity){
+    public String addProductToCartWithValidQuantity(String productName, String quantity){
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
-//        clickOnAddToCartButtonOfSpecifiedProduct("");
-
         setQuantity(quantity);
-//        setQuantity("50");
+        clickOnOKButton();
+        WaitForCartToBeUpdated();
+        return productName;
+    }
+    public void addProductToCartWithInvalidQuantityAndStop(String productName, String quantity){
+        clickOnAddToCartButtonOfSpecifiedProduct(productName);
+        setQuantity(quantity);
+        clickOnOKButton();
+    }
+
+    public void addProductToCartWithEditedQuantity(String productName, String quantity){
+        clickOnAddToCartButtonOfSpecifiedProduct(productName);
+        setQuantity(quantity);
+        clickOnOKButton();
         clickOnOKButton();
         WaitForCartToBeUpdated();
     }
@@ -68,21 +70,27 @@ public class NesspressoProductsPage {
         String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
 
         // waiting for the article that has the specified title to be present in the page
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
+        }
+        catch (Exception ignored){
+            driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
+        }
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         // Scrolling down the page till the element is found
         WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
-
         jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
-        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton AddToBagButtonSmall')]";
+
+        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton')]";
+//        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton AddToBagButtonSmall')]";
         WebElement addToCartButtonOfSpecifiedProduct =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath(AddToBagButtonXpath)));
         addToCartButtonOfSpecifiedProduct.click();
 
 //        jse.executeScript("window.scrollTo(0, document.documentElement.scrollTop || document.body.scrollTop);");
     }
 
-    public String verifyQuantityOfSelectedProduct(String productName){
+    public String GetQuantityOfSelectedProductInCartSpan(String productName){
         //this works as well
         //article[.//h3[contains(text(),'Caramello')]]//div[@class='AddToBagButtonSmall__quantity']
 
@@ -120,11 +128,11 @@ public class NesspressoProductsPage {
 
     public void setQuantity(String quantity){
         wait.until(ExpectedConditions.elementToBeClickable(quantitySelector)).sendKeys(quantity);
-    }
 
+    }
     public void clickOnOKButton(){
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(okButton)).click();
+            driver.findElement(By.xpath("//button[@class='QuantitySelectorCustomField__button-ok']")).click();
         }
         catch (Exception e){
             wait.until(ExpectedConditions.elementToBeClickable(okButton)).click();
@@ -134,7 +142,7 @@ public class NesspressoProductsPage {
         //wait until value of filled cart change
         String oldValueOfCartButton = cart.getText();
         System.out.println(oldValueOfCartButton);
-        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(cart,oldValueOfCartButton)));
+        new WebDriverWait(driver,8).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(cart,oldValueOfCartButton)));
         String newValueOfCartButton = cart.getText();
         System.out.println(newValueOfCartButton);
     }
@@ -149,25 +157,30 @@ public class NesspressoProductsPage {
     }
 
     public void clickOnFilledCart(){
-        wait.until(ExpectedConditions.elementToBeClickable(filledCart)).click();
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(filledCart)).click();
+        }
+        catch (Exception Ignored){
+            driver.findElement((By) filledCart).click();
+        }
     }
 
     public void verifyItemCount(){
-        wait.until(ExpectedConditions.elementToBeClickable(numberOfItemsInButtonDiv));
-        wait.until(ExpectedConditions.elementToBeClickable(numberOfItemsInCartSpan));
+    wait.until(ExpectedConditions.elementToBeClickable(numberOfItemsInButtonDiv));
+    wait.until(ExpectedConditions.elementToBeClickable(numberOfItemsInCartSpan));
 
-        String stringNumberOfItemsInButtonDiv = numberOfItemsInButtonDiv.getText();
-        String stringNumberOfItemsInCartSpan = numberOfItemsInCartSpan.getText();
+    String stringNumberOfItemsInButtonDiv = numberOfItemsInButtonDiv.getText();
+    String stringNumberOfItemsInCartSpan = numberOfItemsInCartSpan.getText();
 
 //        String substringInCartSpan = stringNumberOfItemsInCartSpan.substring(1, stringNumberOfItemsInCartSpan.indexOf(" "));
 //        Assert.assertEquals(stringNumberOfItemsInButtonDiv, substringInCartSpan);
 
-        Assert.assertTrue(stringNumberOfItemsInCartSpan.contains(stringNumberOfItemsInButtonDiv));
+    Assert.assertTrue(stringNumberOfItemsInCartSpan.contains(stringNumberOfItemsInButtonDiv));
 //        System.out.println("substringInCartSpan is " + substringInCartSpan);
-        System.out.println("stringNumberOfItemsInButtonDiv is " + stringNumberOfItemsInButtonDiv);
-        System.out.println("stringNumberOfItemsInCartSpan is " + stringNumberOfItemsInCartSpan);
-
+    System.out.println("stringNumberOfItemsInButtonDiv is " + stringNumberOfItemsInButtonDiv);
+    System.out.println("stringNumberOfItemsInCartSpan is " + stringNumberOfItemsInCartSpan);
     }
+
 //        public void getCartItemCount() {
 //            clickOnFilledCart();
 //            //find span text
@@ -177,21 +190,17 @@ public class NesspressoProductsPage {
 //            System.out.println(itemCount);
 //        }
 
-    public String readProductDataFromExcel(String filePath, String sheetName, int rowNumber, int cellNumber) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-        XSSFSheet sheet = workbook.getSheet(sheetName);
-        XSSFRow firstRow = sheet.getRow(rowNumber);
-        String productName = WordUtils.capitalize(firstRow.getCell(cellNumber).getStringCellValue());
 
-        workbook.close();
-        fileInputStream.close();
-
-        return productName;
-    }
     public void proceedToCheckout(){
-        proceedToCheckoutButton.click();
+        try {
+            proceedToCheckoutButton.click();
+        }
+        catch (Exception ignored){
+            wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButton)).click();
+        }
     }
+
+
 
     public void enterOrPickQuantity(final String quantity){
         try {
@@ -200,11 +209,20 @@ public class NesspressoProductsPage {
             button.click();
         }
         catch (Exception e){
-            WebElement input = wait.until(ExpectedConditions.elementToBeClickable(By.id("ta-quantity-selector__custom-field")));
+            WebElement input = wait.until(ExpectedConditions.elementToBeClickable(quantitySelector));
             input.sendKeys(quantity);
         }
         WebElement ok = driver.findElement(By.id("ta-quantity-selector__custom-ok"));
         ok.click();
     }
 
+    public void closeCart() {
+        try {
+            driver.findElement(By.xpath("//button[@id='ta-mini-basket__close']")).click();
+        }
+        catch (Exception Ignored){
+            wait.until(ExpectedConditions.elementToBeClickable(By.
+                    xpath("//button[@id='ta-mini-basket__close']"))).click();
+        }
+    }
 }
