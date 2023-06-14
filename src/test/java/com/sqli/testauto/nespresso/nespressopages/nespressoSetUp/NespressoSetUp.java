@@ -4,12 +4,18 @@ import com.sqli.testauto.nespresso.manageExcelData.ReadExcel;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
 import com.sqli.testauto.nespresso.nespressopages.NesspressoProductsPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang.WordUtils;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
@@ -24,6 +30,7 @@ public class NespressoSetUp {
     int ValidQuantityInExcelFile;
 //    int InvalidQuantityInExcelFile;
     int quantityOfSelectedProduct;
+    static final String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
 
     @BeforeTest
     public void setUp() throws IOException {
@@ -31,7 +38,7 @@ public class NespressoSetUp {
         option = new ChromeOptions();
         option.addArguments("--remote-allow-origins=*");
         option.addArguments("--disable-blink-features=AutomationControlled");
-        option.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        option.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -44,10 +51,12 @@ public class NespressoSetUp {
 
 
 //        cookieHandler = new CookieHandler(driver);
+
         driver.manage().window().maximize();
         String domain = "https://www.nespresso.com/fr/en";
 
         driver.get(domain);
+
 
 
 //        Cookie cookie = new Cookie.Builder("myCookie", "value")
@@ -61,18 +70,73 @@ public class NespressoSetUp {
 //        driver.manage().addCookie(cookie);
 
     }
-    public void addProductToCartWithValidQuantity(int rowNumber){
-        nesspressoProductsPage.addProductToCartWithValidQuantity
-                (ReadExcel.getProductNameFromExcelFile(rowNumber),
-                        String.valueOf(Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(rowNumber))));
+
+
+    @Test(dataProvider = "productData")
+    public void addProductToCartWithValidQuantity(String productName, String quantity){
+        nespressoHomePage.acceptCookie();
+        nespressoHomePage.goToProductsPage();
+        nesspressoProductsPage.addProductToCartWithValidQuantity(productName,quantity);
+        nesspressoProductsPage.clickOnFilledCart();
+        String quantityInSpan = nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan(productName);
+        Assert.assertEquals(quantity, quantityInSpan );
+        nesspressoProductsPage.closeCart();
     }
-    public int GetQuantityOfSelectedProductInCartSpan(int rowNumber){
-        return Integer.parseInt(nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan(ReadExcel.getProductNameFromExcelFile(rowNumber)));
+//    @AfterTest
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
+
+    @DataProvider(name = "productData")
+    public Object[][] getProductData() throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+        XSSFSheet sheet = workbook.getSheet("sheet1");
+        int rowCount = sheet.getPhysicalNumberOfRows();
+
+        // Count the number of rows with non-empty cells
+        int validRowCount = 0;
+        for (int rowNumber = 1; rowNumber < rowCount; rowNumber++) {
+            XSSFRow row = sheet.getRow(rowNumber);
+            if (row.getCell(0) != null && row.getCell(1) != null) {
+                validRowCount++;
+            }
+        }
+
+        Object[][] data = new Object[validRowCount][2];
+        int dataIndex = 0;
+
+        for (int rowNumber = 1; rowNumber < validRowCount + 1; rowNumber++) {
+            XSSFRow row = sheet.getRow(rowNumber);
+            if (row.getCell(0) != null && row.getCell(1) != null) {
+                data[dataIndex][0] = row.getCell(0).toString();
+                System.out.println("product name at index: " + dataIndex + " is " + data[dataIndex][0]);
+                data[dataIndex][1] = row.getCell(1).toString();
+                System.out.println("valid quantity at index: " + dataIndex + " is " + data[dataIndex][1]);
+                dataIndex++;
+            }
+        }
+
+        workbook.close();
+        fileInputStream.close();
+
+//        System.out.println("data is : " + data);
+        return data;
+    }
+    @Test
+    public void addProductToCartWithValidQuantityWithHardCoding(){
+//        nespressoHomePage.acceptCookie();
+        nespressoHomePage.goToProductsPage();
+        nesspressoProductsPage.addProductToCartWithValidQuantity("Ristretto","30");
+        nesspressoProductsPage.clickOnFilledCart();
+        String quantityInSpan = nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan("Ristretto");
+        Assert.assertEquals("30", quantityInSpan );
+        nesspressoProductsPage.closeCart();
     }
 
-    public int getValidQuantityFromExcelFile(int rowNumber){
-        return Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(rowNumber));
-    }
+
     @Test
     public void addMultipleProductsToCartFRWithValidQuantity(){
         nespressoHomePage.acceptCookie();
@@ -86,6 +150,22 @@ public class NespressoSetUp {
             nesspressoProductsPage.closeCart();
         }
     }
+    public void addProductToCartWithValidQuantity(int rowNumber){
+        nesspressoProductsPage.addProductToCartWithValidQuantity
+                (ReadExcel.getProductNameFromExcelFile(rowNumber),
+                        (ReadExcel.getValidQuantityFromExcelFile(rowNumber)));
+    }
+
+    public int GetQuantityOfSelectedProductInCartSpan(int rowNumber){
+        return Integer.parseInt(nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan(ReadExcel.getProductNameFromExcelFile(rowNumber)));
+    }
+    public int getValidQuantityFromExcelFile(int rowNumber){
+        return Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(rowNumber));
+    }
+
+
+
+
 //    @Test
 //    public void addToCartAndCheckoutInFRWithInvalidQuantityFixQuantityAndContinue(){
 ////        cookieHandler.acceptCookies(nespressoHomePage.cookieAcceptButtonFR,6);

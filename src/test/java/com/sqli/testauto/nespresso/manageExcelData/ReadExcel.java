@@ -34,7 +34,7 @@ public class ReadExcel {
 
         return productName;
     }
-    public static String getProductNameFromExcelFile(int rowNumber){
+    public static String getProductNameFromExcelFile(int rowNumber) {
         try {
             return readProductDataFromExcel(filePath, "sheet1", rowNumber, 0);
         } catch (IOException e) {

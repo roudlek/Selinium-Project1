@@ -38,7 +38,7 @@ public class NesspressoProductsPage {
 
     public NesspressoProductsPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, 20);
         PageFactory.initElements(driver, this);
     }
     public String addProductToCartWithValidQuantity(String productName, String quantity){
