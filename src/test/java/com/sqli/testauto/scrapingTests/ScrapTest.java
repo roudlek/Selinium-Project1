@@ -27,7 +27,7 @@ public class ScrapTest {
         option = new ChromeOptions();
         option.addArguments("--remote-allow-origins=*");
         option.addArguments("--disable-blink-features=AutomationControlled");
-        option.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        option.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -47,7 +47,7 @@ public class ScrapTest {
 ////        cookieHandler = new CookieHandler(driver);
 
         driver.manage().window().maximize();
-        driver.get("https://www.nespresso.com/fr/en/order/capsules/original");
+        driver.get("https://www.nespresso.com/fr/en/order/machines/original");
 //        driver.get("https://www.avito.ma/");
 //
 //        for (int i = 0; i < 10; i++) {
@@ -59,6 +59,16 @@ public class ScrapTest {
     public void getAllProductNames(){
         int i = 0;
         List<WebElement> webElements = driver.findElements(By.xpath("//article//h3[contains(text(),'') and not(*)]"));
+        for(WebElement webElement:webElements){
+            i++;
+            System.out.println(webElement.getText());
+        }
+        System.out.println(i);
+    }
+    @Test
+    public void getAllMachinesNames(){
+        int i = 0;
+        List<WebElement> webElements = driver.findElements(By.xpath("//article//a[contains(@id,'ProductListElementMachine__product-at-')]"));
         for(WebElement webElement:webElements){
             i++;
             System.out.println(webElement.getText());

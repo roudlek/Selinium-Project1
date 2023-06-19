@@ -1,5 +1,6 @@
 package com.sqli.testauto.nespresso.nespressopages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class NespressoHomePage {
     private WebDriver driver;
     private WebDriverWait wait;
-    @FindBy(xpath = "//a[contains(@class,'AccessibleLink HeaderNavigationBarItem__anchor') and contains(@href,'/en/order/capsules')]")
-    WebElement navigationMenuLink;
-    @FindBy(xpath = "//a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'capsules/original')]")
+    @FindBy(xpath = "//a[contains(@class,'AccessibleLink HeaderNavigationBarItem__anchor') and contains(@href,'/capsules')]")
+    WebElement capsulesNavigationMenuLink;
+    @FindBy(xpath = "//a[contains(@class,'AccessibleLink HeaderNavigationBarItem__anchor') and contains(@href,'/machines')]")
+    WebElement machinesNavigationMenuLink;
+    @FindBy(xpath = "//a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'/original')]")
     WebElement orderLink;
     @FindBy(id = "_evidon-banner-acceptbutton")
     WebElement cookieAcceptButtonFR;
@@ -22,7 +25,7 @@ public class NespressoHomePage {
     WebElement cookieAcceptButtonUK;
     public NespressoHomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 500);
+        this.wait = new WebDriverWait(driver, 20);
         PageFactory.initElements(driver, this);
     }
     public void acceptCookie(){
@@ -34,17 +37,35 @@ public class NespressoHomePage {
         }
     }
 
-    public void hoverOverNavigationMenuLink(){
-        wait.until(ExpectedConditions.elementToBeClickable((navigationMenuLink)));
-        Actions action = new Actions(driver);
-        action.moveToElement(navigationMenuLink).perform();
+    public void hoverOverNavigationMenuLink(WebElement webElement){
+        try{
+            Actions action = new Actions(driver);
+            action.moveToElement(webElement).perform();
+        }
+        catch (NoSuchElementException e){
+            wait.until(ExpectedConditions.elementToBeClickable((webElement)));
+            Actions action = new Actions(driver);
+            action.moveToElement(webElement).perform();
+        }
     }
 
-    public void clickOnLink(){
+    public void clickOnLink(WebElement webElement){
         wait.until(ExpectedConditions.elementToBeClickable(orderLink)).click();
     }
-    public void goToProductsPage(){
-        hoverOverNavigationMenuLink();
-        clickOnLink();
+    public void goToCapsulesPage(){
+        hoverOverNavigationMenuLink(capsulesNavigationMenuLink);
+        clickOnLink(orderLink);
+    }
+
+    public void goToMachinesPage() {
+        hoverOverNavigationMenuLink(machinesNavigationMenuLink);
+        clickOnLink(orderLink);
+    }
+    public void reinitializeSession() {
+        // Clear cookies
+        driver.manage().deleteAllCookies();
+
+        // Refresh the page
+        driver.navigate().refresh();
     }
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class NesspressoProductsPage {
+public class NesspressoCapsulesPage {
     private WebDriver driver;
     private WebDriverWait wait;
     @FindBy(xpath = "//button[contains(@class,'AddToBagButton')]")
@@ -15,12 +15,12 @@ public class NesspressoProductsPage {
 
     @FindBy(id = "ta-quantity-selector__custom-field")
     WebElement quantitySelector;
-    @FindBy(xpath = "//button[@class='QuantitySelectorCustomField__button-ok' and @id='ta-quantity-selector__custom-ok']")
+    @FindBy(xpath = "//button[@class='QuantitySelectorCustomField__button-ok'")
     WebElement okButton;
     @FindBy(xpath = "//button[contains(@class,'MiniBasketButton--not-empty')]")
     WebElement filledCart;
     @FindBy(xpath = "//button[contains(@class,'MiniBasketButton')]")
-    WebElement cart;
+    WebElement Emptycart;
     @FindBy(className = "MiniBasketItemCategory__item-count']")
     WebElement cartCountElement;
     @FindBy(id = "ta-mini-basket__checkout")
@@ -36,37 +36,24 @@ public class NesspressoProductsPage {
     WebElement numberOfItemsInCartSpan;
 
 
-    public NesspressoProductsPage(WebDriver driver) {
+    public NesspressoCapsulesPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 20);
         PageFactory.initElements(driver, this);
     }
-    public String addProductToCartWithValidQuantity(String productName, String quantity){
+    public void addProductToCartWithValidQuantity(String productName, String quantity){
+        scrollToCapsules(productName);
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
-        setQuantity(quantity);
+        setCapsuleQuantity(quantity);
         clickOnOKButton();
         WaitForCartToBeUpdated();
-        return productName;
     }
     public void addProductToCartWithInvalidQuantityAndStop(String productName, String quantity){
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
-        setQuantity(quantity);
+        setCapsuleQuantity(quantity);
         clickOnOKButton();
     }
-
-    public void addProductToCartWithEditedQuantity(String productName, String quantity){
-        clickOnAddToCartButtonOfSpecifiedProduct(productName);
-        setQuantity(quantity);
-        clickOnOKButton();
-        clickOnOKButton();
-        WaitForCartToBeUpdated();
-    }
-
-    public void clickOnAddToCartButtonOfSpecifiedProduct(String productName) {
-        //scroll to bottom
-//        ((JavascriptExecutor) driver)
-//                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
+    public void scrollToCapsules(String productName){
         String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
 
         // waiting for the article that has the specified title to be present in the page
@@ -81,6 +68,23 @@ public class NesspressoProductsPage {
         // Scrolling down the page till the element is found
         WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
         jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
+        jse.executeScript("window.scrollBy(0,-100)", "");
+    }
+
+    public void addProductToCartWithEditedQuantity(String productName, String quantity){
+        clickOnAddToCartButtonOfSpecifiedProduct(productName);
+        setCapsuleQuantity(quantity);
+        clickOnOKButton();
+        clickOnOKButton();
+        WaitForCartToBeUpdated();
+    }
+
+    public void clickOnAddToCartButtonOfSpecifiedProduct(String productName) {
+        //scroll to bottom
+//        ((JavascriptExecutor) driver)
+//                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+
 
         String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton')]";
 //        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton AddToBagButtonSmall')]";
@@ -90,7 +94,7 @@ public class NesspressoProductsPage {
 //        jse.executeScript("window.scrollTo(0, document.documentElement.scrollTop || document.body.scrollTop);");
     }
 
-    public String GetQuantityOfSelectedProductInCartSpan(String productName){
+    public String getQuantityOfSelectedProductInCartSpan(String productName){
         //this works as well
         //article[.//h3[contains(text(),'Caramello')]]//div[@class='AddToBagButtonSmall__quantity']
 
@@ -101,11 +105,19 @@ public class NesspressoProductsPage {
         // this works as well
         //span[text()='Jamaica Blue Mountain']//ancestor::td//span[@class='MiniBasketItemPriceAndName__price-calc']
         String SpanOfMiniBasketOfSpecifiedProduct = "//td[.//span[text()='"+ productName + "']]//span[@class='MiniBasketItemPriceAndName__price-calc']";
-        String stringNumberOfItemsInCartSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SpanOfMiniBasketOfSpecifiedProduct))).getText();
+        String stringNumberOfItemsInCartSpan;
+        try {
+            stringNumberOfItemsInCartSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SpanOfMiniBasketOfSpecifiedProduct))).getText();
+        }
+        catch (Exception e){
+            stringNumberOfItemsInCartSpan = driver.findElement(By.xpath(SpanOfMiniBasketOfSpecifiedProduct)).getText();
+        }
 
         ////
         String substringInCartSpan = stringNumberOfItemsInCartSpan.substring(1, stringNumberOfItemsInCartSpan.indexOf(" "));
 //        Assert.assertEquals(stringNumberOfItemsInButtonDiv, substringInCartSpan);
+
+        System.out.println("stringNumberOfItemsInCartSpan is " + stringNumberOfItemsInCartSpan);
         System.out.println("substringInCartSpan is " + substringInCartSpan);
 //        System.out.println("stringNumberOfItemsInButtonDiv is " + stringNumberOfItemsInButtonDiv);
 
@@ -125,14 +137,13 @@ public class NesspressoProductsPage {
             wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         }
     }
-
-    public void setQuantity(String quantity){
+    public void setCapsuleQuantity(String quantity){
         wait.until(ExpectedConditions.elementToBeClickable(quantitySelector)).sendKeys(quantity);
-
     }
     public void clickOnOKButton(){
         try {
             driver.findElement(By.xpath("//button[@class='QuantitySelectorCustomField__button-ok']")).click();
+//            driver.findElement((By) okButton).click(); // this does not work
         }
         catch (Exception e){
             wait.until(ExpectedConditions.elementToBeClickable(okButton)).click();
@@ -140,10 +151,10 @@ public class NesspressoProductsPage {
     }
     public void WaitForCartToBeUpdated(){
         //wait until value of filled cart change
-        String oldValueOfCartButton = cart.getText();
+        String oldValueOfCartButton = Emptycart.getText();
         System.out.println(oldValueOfCartButton);
-        new WebDriverWait(driver,8).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(cart,oldValueOfCartButton)));
-        String newValueOfCartButton = cart.getText();
+        new WebDriverWait(driver,8).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(Emptycart,oldValueOfCartButton)));
+        String newValueOfCartButton = Emptycart.getText();
         System.out.println(newValueOfCartButton);
     }
     public void WaitForTextToBeChanged(final WebElement element){
@@ -156,7 +167,7 @@ public class NesspressoProductsPage {
         }
     }
 
-    public void clickOnFilledCart(){
+    public void clickOnCart(){
         try {
             wait.until(ExpectedConditions.elementToBeClickable(filledCart)).click();
         }
@@ -223,6 +234,11 @@ public class NesspressoProductsPage {
         catch (Exception Ignored){
             wait.until(ExpectedConditions.elementToBeClickable(By.
                     xpath("//button[@id='ta-mini-basket__close']"))).click();
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

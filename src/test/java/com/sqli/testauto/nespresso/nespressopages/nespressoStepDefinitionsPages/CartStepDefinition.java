@@ -1,8 +1,8 @@
 package com.sqli.testauto.nespresso.nespressopages.nespressoStepDefinitionsPages;
 
-import com.sqli.testauto.nespresso.manageExcelData.ReadExcel;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
-import com.sqli.testauto.nespresso.nespressopages.NesspressoProductsPage;
+import com.sqli.testauto.nespresso.nespressopages.NesspressoCapsulesPage;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -15,92 +15,76 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
-@CucumberOptions(features = "Features/ ",tags ="@Ready" ,glue = "nespressoStepDefinitionsPages", plugin = {"pretty", "html:target/htmlreports.html","json:target/htmlreports.json"})
+import org.testng.Assert;
+
+@CucumberOptions(features = "Features",tags ="@Ready" ,glue = "com/sqli/testauto/nespresso/nespressopages/nespressoStepDefinitionsPages", plugin = {"pretty", "html:target/htmlreports.html","json:target/htmlreports.json"})
 public class CartStepDefinition extends AbstractTestNGCucumberTests {
     private WebDriver driver;
-    private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
-    private NesspressoProductsPage nesspressoProductsPage;
-    private String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
+    private NesspressoCapsulesPage nesspressoCapsulesPage;
+    private final String filePath = "src/test/java/com/sqli/testauto/products/productslist.xlsx";
 
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp(){
         WebDriverManager.chromedriver().setup();
-        option = new ChromeOptions();
+        ChromeOptions option = new ChromeOptions();
         option.addArguments("--remote-allow-origins=*");
         option.addArguments("--disable-blink-features=AutomationControlled");
-        option.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        option.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
-        nesspressoProductsPage = new NesspressoProductsPage(driver);
-//        cookieHandler = new CookieHandler(driver);
-        driver.manage().window().maximize();
-
+        nesspressoCapsulesPage = new NesspressoCapsulesPage(driver);
     }
 
-    @Given("^user is in home page$")
-    public void user_is_in_home_page() {
+
+    @Given("^User is on the home page$")
+    public void user_is_on_the_home_page() throws Throwable {
+        driver.manage().window().maximize();
         String domain = "https://www.nespresso.com/fr/en";
+
         driver.get(domain);
     }
-
-    @When("^user typed valid quantity (.+)$")
-    public void user_typed_valid_quantity(String quantity_Typed) throws IOException {
-        nesspressoProductsPage.setQuantity(ReadExcel.readProductDataFromExcel(filePath,"sheet1",1,0));
-    }
-    @When("^user typed invalid quantity (.+)$")
-    public void user_typed_invalid_quantity(String quantity) {
-        nesspressoProductsPage.setQuantity(quantity);
-    }
-
-    @Then("^Assert that actual (.+) of specified product equal to (.+)$")
-    public void assert_that_actual_of_specified_product_equal_to(String quantitytyped) throws Throwable {
-        String productName = ReadExcel.readProductDataFromExcel(filePath, "sheet1",1,0);
-        String finalQuantity = nesspressoProductsPage.GetQuantityOfSelectedProductInCartSpan(productName);
-        Assert.assertEquals(quantitytyped,finalQuantity);
-    }
-
-    @And("^accept cookie$")
-    public void accept_cookie(){
+//    @Given("User is on the home page")
+//    public void user_is_on_the_home_page() {
+//        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
+//    }
+    @And("^User navigates to the capsules page$")
+    public void user_navigates_to_the_capsules_page() throws Throwable {
         nespressoHomePage.acceptCookie();
+        nespressoHomePage.goToCapsulesPage();
     }
-
-    @And("^user navigates to products page$")
-    public void user_navigates_to_products_page(){
-        nespressoHomePage.goToProductsPage();
+    @When("^User adds product (.+) to the cart with a valid quantity (.+)$")
+    public void user_adds_product_to_the_cart_with_a_valid_quantity(String productName, String quantity) throws Throwable {
+        nesspressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
     }
-
-    @And("^user clicked on add to cart button of specified product$")
-    public void user_clicked_on_add_to_cart_button_of_specified_product() throws IOException {
-        String productName = ReadExcel.readProductDataFromExcel(filePath, "sheet1",0,0);
-        nesspressoProductsPage.addProductToCartWithValidQuantity(productName,"130");
+    @And("^User opens the shopping cart$")
+    public void user_opens_the_shopping_cart() throws Throwable {
+        nesspressoCapsulesPage.clickOnCart();
     }
-
-    @And("^clicked on ok button$")
-    public void clicked_on_ok_button(){
-        nesspressoProductsPage.clickOnOKButton();
+    @Then("^the quantity of the selected product (.+) in the cart should be (.+)$")
+    public void the_quantity_of_the_selected_product_in_the_cart_should_be(String productname, String quantity) throws Throwable {
+        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productname);
+        Assert.assertEquals(quantity, quantityInSpan,"Quantity in cart does not match expected value.");
     }
-
-    @And("^Wait for cart to be updated$")
-    public void wait_for_cart_to_be_updated(){
-        nesspressoProductsPage.WaitForCartToBeUpdated();
+    @And("^the user closes the shopping cart$")
+    public void the_user_closes_the_shopping_cart() throws Throwable {
+        nesspressoCapsulesPage.closeCart();
     }
-
-    @And("^opened filled cart$")
-    public void opened_filled_cart(){
-        nesspressoProductsPage.clickOnFilledCart();
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
-
 
 
 
