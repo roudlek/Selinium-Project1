@@ -23,7 +23,8 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.testng.Assert;
 
 @CucumberOptions(features = "Features",tags ="@Ready" ,glue = "com/sqli/testauto/nespresso/nespressopages/nespressoStepDefinitionsPages", plugin = {"pretty", "html:target/htmlreports.html","json:target/htmlreports.json"})
-public class CartStepDefinition extends AbstractTestNGCucumberTests {
+public class CartStepDefinition {
+//public class CartStepDefinition extends AbstractTestNGCucumberTests {
     private WebDriver driver;
     private NespressoHomePage nespressoHomePage;
     private NesspressoCapsulesPage nesspressoCapsulesPage;

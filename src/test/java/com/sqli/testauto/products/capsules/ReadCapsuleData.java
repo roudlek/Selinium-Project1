@@ -38,10 +38,8 @@ public class ReadCapsuleData {
                 dataIndex++;
             }
         }
-
         workbook.close();
         fileInputStream.close();
-
         return data;
     }
 }

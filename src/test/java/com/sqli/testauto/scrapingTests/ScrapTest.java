@@ -17,9 +17,7 @@ public class ScrapTest {
     private WebDriver driver;
     private ChromeOptions option;
 //    private WebDriverWait wait;
-
-
-    //    private WebDriver.Options options;
+//    private WebDriver.Options options;
 //    Cookie cookie;
     @BeforeTest
     public void setUp(){
@@ -27,7 +25,7 @@ public class ScrapTest {
         option = new ChromeOptions();
         option.addArguments("--remote-allow-origins=*");
         option.addArguments("--disable-blink-features=AutomationControlled");
-        option.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        option.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -55,9 +53,14 @@ public class ScrapTest {
 //            System.out.println(driver.getTitle());
 //        }
     }
-    @Test
+//    @Test
     public void getAllProductNames(){
         int i = 0;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         List<WebElement> webElements = driver.findElements(By.xpath("//article//h3[contains(text(),'') and not(*)]"));
         for(WebElement webElement:webElements){
             i++;

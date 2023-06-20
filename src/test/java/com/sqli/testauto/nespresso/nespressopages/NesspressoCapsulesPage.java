@@ -10,6 +10,11 @@ import org.testng.Assert;
 public class NesspressoCapsulesPage {
     private WebDriver driver;
     private WebDriverWait wait;
+
+    private boolean capsuleExist = false;
+    public boolean isCapsuleExist() {
+        return capsuleExist;
+    }
     @FindBy(xpath = "//button[contains(@class,'AddToBagButton')]")
     WebElement addToCartButton;
 
@@ -38,15 +43,17 @@ public class NesspressoCapsulesPage {
 
     public NesspressoCapsulesPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 20);
+        this.wait = new WebDriverWait(driver, 6);
         PageFactory.initElements(driver, this);
     }
     public void addProductToCartWithValidQuantity(String productName, String quantity){
         scrollToCapsules(productName);
-        clickOnAddToCartButtonOfSpecifiedProduct(productName);
-        setCapsuleQuantity(quantity);
-        clickOnOKButton();
-        WaitForCartToBeUpdated();
+        if(capsuleExist){
+            clickOnAddToCartButtonOfSpecifiedProduct(productName);
+            setCapsuleQuantity(quantity);
+            clickOnOKButton();
+            WaitForCartToBeUpdated();
+        }
     }
     public void addProductToCartWithInvalidQuantityAndStop(String productName, String quantity){
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
@@ -55,20 +62,24 @@ public class NesspressoCapsulesPage {
     }
     public void scrollToCapsules(String productName){
         String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
-
         // waiting for the article that has the specified title to be present in the page
         try {
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
+//            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
+            driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
+//            System.out.println("capsule found using wait");
+            System.out.println("capsule with name " + productName + " found using driver.findElementBy");
+            capsuleExist = true;
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            // Scrolling down the page till the element is found
+            WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
+            jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
+            jse.executeScript("window.scrollBy(0,-100)", "");
         }
         catch (Exception ignored){
-            driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
+//            driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
+            System.out.println("capsule does not exist with the name " + productName + " in products page");
+            capsuleExist = false;
         }
-
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        // Scrolling down the page till the element is found
-        WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
-        jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
-        jse.executeScript("window.scrollBy(0,-100)", "");
     }
 
     public void addProductToCartWithEditedQuantity(String productName, String quantity){

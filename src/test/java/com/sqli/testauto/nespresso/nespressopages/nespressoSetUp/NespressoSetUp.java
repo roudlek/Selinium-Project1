@@ -149,6 +149,7 @@ public class NespressoSetUp {
                 (ReadExcel.getProductNameFromExcelFile(rowNumber),
                         (ReadExcel.getValidQuantityFromExcelFile(rowNumber)));
     }
+
     public int GetQuantityOfSelectedProductInCartSpan(int rowNumber){
         return Integer.parseInt(nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(ReadExcel.getProductNameFromExcelFile(rowNumber)));
     }
