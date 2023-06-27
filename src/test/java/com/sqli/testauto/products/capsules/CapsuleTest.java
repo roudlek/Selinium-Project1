@@ -42,12 +42,10 @@ public class CapsuleTest {
     public void addMultipleProductsToCartWithValidQuantityInOneTest(String productName, String quantity) throws IOException {
         // reinistialiser la session(new solution to reduce ressources)
         nesspressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
-        if(nesspressoCapsulesPage.isCapsuleExist()) {
-            nesspressoCapsulesPage.clickOnCart();
-            String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
-            Assert.assertEquals(quantity, quantityInSpan, "Quantity in cart does not match expected value.");
-            nesspressoCapsulesPage.closeCart();
-        }
+        nesspressoCapsulesPage.clickOnCart();
+        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
+        Assert.assertEquals(quantity, quantityInSpan, "Quantity in cart does not match expected value.");
+        nesspressoCapsulesPage.closeCart();
     }
     //    @AfterTest
     public void shutDown() {

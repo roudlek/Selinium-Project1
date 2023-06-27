@@ -1,0 +1,24 @@
+userName: elidrissiabdelaz_8A7cej
+accessKey: wzMqfKW9x8yPZ9S4oAGB
+framework: testng
+platforms:
+#  - os: Windows
+#    osVersion: 11
+#    browserName: Chrome
+#    browserVersion: 113.0
+  - os: Windows
+    osVersion: 10
+    browserName: Firefox
+    browserVersion: 102.0
+  - os: OS X
+    osVersion: Big Sur
+    browserName: Safari
+    browserVersion: 14.1
+parallelsPerPlatform: 1
+browserstackLocal: false
+buildName: bstack-demo
+buildIdentifier: ${BUILD_NUMBER}
+projectName: BrowserStack Sample
+testObservability: true
+networkLogs: true
+consoleLogs: info

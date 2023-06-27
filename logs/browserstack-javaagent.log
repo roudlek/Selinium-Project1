@@ -1,0 +1,268 @@
+12:13:21.387 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+12:13:21.416 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+12:13:21.927 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+12:13:21.974 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+12:13:32.933 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+12:13:36.453 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+12:13:37.982 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:37.982 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:37.982 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:37.999 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:37.999 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:37.999 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:38.084 [setUp@0] ERROR c.b.DriverServiceTransformer - Could not intercept config capabilities- javassist.CannotCompileException: [source error] no such field: executor
+12:13:38.098 [setUp@0] ERROR c.b.DriverServiceTransformer - Session Retry Failed on SSL Error | nudgeLocal response Error - javassist.CannotCompileException: [source error] no such field: sessionId
+12:13:38.171 [setUp@2] ERROR c.b.DriverServiceTransformer - [source error] no such class: command
+12:13:39.418 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/umvat6xifbefztsjq0rdpauhzhhjmuf8rke4upgk to view build report, insights, and many more debugging information all at one place!
+
+12:13:41.525 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+12:18:40.452 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+12:18:40.481 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+12:18:40.991 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+12:18:41.035 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+12:18:51.700 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+12:18:55.122 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+12:18:57.615 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/8hjmjcvoynyy4r6zmnbw2s74blkkygxixfkovuvx to view build report, insights, and many more debugging information all at one place!
+
+12:18:59.789 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+12:20:59.971 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+12:21:00.012 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+12:21:00.487 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+12:21:00.526 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+12:21:05.554 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+12:21:08.765 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+12:21:13.201 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:21:13.208 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:21:13.296 [setUp@0] ERROR c.b.DriverServiceTransformer - Could not intercept config capabilities- javassist.CannotCompileException: [source error] no such field: executor
+12:21:13.312 [setUp@0] ERROR c.b.DriverServiceTransformer - Session Retry Failed on SSL Error | nudgeLocal response Error - javassist.CannotCompileException: [source error] no such field: sessionId
+12:21:13.390 [setUp@0] ERROR c.b.DriverServiceTransformer - [source error] no such class: command
+12:21:14.645 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/1o3h6za8iwjtpdi5nd1t5pomaj4v393tqdgt7ttt to view build report, insights, and many more debugging information all at one place!
+
+12:21:16.767 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+14:20:59.666 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+14:20:59.698 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+14:21:00.351 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+14:21:00.441 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+14:21:08.787 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+14:21:12.451 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+14:21:14.061 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:21:14.656 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+14:21:14.661 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+14:21:14.662 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+14:21:14.663 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+14:21:14.668 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+14:21:14.668 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+14:38:28.899 [Thread-1] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/bf88b8639551f36502311ccec836f6b2035f347e
+14:38:28.900 [Thread-1] INFO  c.b.config.BrowserStackConfig - INFO
+14:38:29.884 [Thread-1] ERROR c.browserstack.utils.UtilityMethods - Mark Session Status failed - org.openqa.selenium.WebDriverException: An unknown error has occurred
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f534b97ac7152de6685ea8f0f5ede4fa8730b602, executeScript {script=browserstack_executor: {"action":"setSessionStatus","arguments":{"reason":"Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.xpath: \/\/a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'\/original')]' (tried for 5 second(s) with 500 milliseconds interval) | java.lang.reflect.InvocationTargetException Build info: version: '4.1.1', revision: 'e8fcc2cecf' System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372' Driver info: org.openqa.selenium.chrome.ChromeDriver Command: [f534b97ac7152de6685ea8f0f5ede4fa8730b602, actions {actions=[org.openqa.selenium.interactions.Sequence@4adca232]}] Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 14.1.2, javascriptEnabled: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 20G314, safari:platformVersion: 11.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webdriver.remote.sessionid: f534b97ac7152de6685ea8f0f5e..., webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}} Session ID: f534b97ac7152de6685ea8f0f5ede4fa8730b602 | java.lang.reflect.InvocationTargetException Build info: version: '4.1.1', revision: 'e8fcc2cecf' System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372' Driver info: org.openqa.selenium.chrome.ChromeDriver Command: [f534b97ac7152de6685ea8f0f5ede4fa8730b602, actions {actions=[org.openqa.selenium.interactions.Sequence@23992c46]}] Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 14.1.2, javascriptEnabled: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 20G314, safari:platformVersion: 11.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webdriver.remote.sessionid: f534b97ac7152de6685ea8f0f5e..., webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}} Session ID: f534b97ac7152de6685ea8f0f5ede4fa8730b602 | java.lang.reflect.InvocationTargetException Build info: version: '4.1.1', revision: 'e8fcc2cecf' System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372' Driver info: org.openqa.selenium.chrome.ChromeDriver Command: [f534b97ac7152de6685ea8f0f5ede4fa8730b602, actions {actions=[org.openqa.selenium.interactions.Sequence@2470021]}] Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 14.1.2, javascriptEnabled: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 20G314, safari:platformVersion: 11.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webdriver.remote.sessionid: f534b97ac7152de6685ea8f0f5e..., webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}} Session ID: f534b97ac7152de6685ea8f0f5ede4fa8730b602","status":"failed"}}, args=[]}]
+Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 14.1.2, javascriptEnabled: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 20G314, safari:platformVersion: 11.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webdriver.remote.sessionid: f534b97ac7152de6685ea8f0f5e..., webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}}
+Session ID: f534b97ac7152de6685ea8f0f5ede4fa8730b602
+14:38:30.477 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+15:20:00.143 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+15:20:00.220 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+15:20:01.439 [main] ERROR c.b.config.BrowserStackConfig - Malformed browserstack.yml file - java.lang.NullPointerException.
+15:20:01.469 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+15:20:01.483 [main] INFO  c.b.config.BrowserStackConfig - Few SDK features were not activated as platforms object was not defined
+15:20:01.484 [main] ERROR c.browserstack.BrowserStackJavaAgent - Something went wrong - com.browserstack.utils.BrowserStackSDKException: Empty userName or accessKey
+15:23:03.934 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+15:23:04.004 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+15:23:05.280 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+15:23:05.328 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+15:23:17.612 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:23:18.366 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+15:23:18.372 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+15:23:18.378 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+15:23:18.378 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+15:23:18.387 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+15:23:18.388 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+15:27:40.589 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/qb59pdeklzmglmt9wxukmroylskz6jleqzun1wur to view build report, insights, and many more debugging information all at one place!
+
+15:27:41.250 [Thread-1] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/80ff73610e70dfedf421687215ea80ed999e5e1f
+15:27:41.251 [Thread-1] INFO  c.b.config.BrowserStackConfig - INFO
+15:33:57.957 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+15:33:58.011 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+15:33:58.772 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+15:33:58.793 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+15:34:08.256 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:08.451 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:08.451 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:08.451 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:08.461 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:08.461 [setUp@2] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:08.461 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+15:34:17.428 [Thread-1] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/a28d755eb08fd7cb78260b0a7680a252a4a7bef9
+15:34:17.429 [Thread-1] INFO  c.b.config.BrowserStackConfig - INFO
+12:36:17.068 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:36:18.467 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:36:18.484 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:37:20.138 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:37:20.429 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:37:20.448 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:40:40.434 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+12:40:40.472 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+12:40:41.023 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+12:40:41.042 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+12:40:47.826 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:40:48.010 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:40:48.020 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:41:33.255 [shutDown@0] ERROR c.browserstack.utils.UtilityMethods - Mark Session Status failed - org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, executeScript {script=browserstack_executor: {"action":"setSessionStatus","arguments":{"reason":"Expected condition failed: waiting for condition to not be valid: text ('YOUR BASKET (31)') to be present in element [[ChromeDriver: chrome on WINDOWS (83eeaf00ccb3ca39c272db055261b360770d22d2)] -> xpath: \/\/button[contains(@class,'MiniBasketButton')]] (tried for 8 second(s) with 500 milliseconds interval) Build info: version: '4.1.1', revision: 'e8fcc2cecf' System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372' Driver info: org.openqa.selenium.chrome.ChromeDriver Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 113.0.5672.64, chrome: {chromedriverVersion: 113.0.5672.24 (65f30d4e8051..., userDataDir: C:\\Windows\\proxy\\scoped_dir...}, goog:chromeOptions: {debuggerAddress: localhost:9222}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true, webdriver.remote.sessionid: 83eeaf00ccb3ca39c272db05526...} Session ID: 83eeaf00ccb3ca39c272db055261b360770d22d2","status":"failed"}}, args=[]}]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 113.0.5672.64, chrome: {chromedriverVersion: 113.0.5672.24 (65f30d4e8051..., userDataDir: C:\Windows\proxy\scoped_dir...}, goog:chromeOptions: {debuggerAddress: localhost:9222}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true, webdriver.remote.sessionid: 83eeaf00ccb3ca39c272db05526...}
+12:41:33.589 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/bv8vl23lv8qdyfr5hvoowd3fvosfp0hwplqicr7k to view build report, insights, and many more debugging information all at one place!
+
+12:41:34.323 [Thread-1] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/75f1796a2fe6202fbfa6da15e3a89d94c27c91fb
+12:41:34.323 [Thread-1] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:20.482 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:21.105 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:21.144 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:21.582 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:22.019 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:22.037 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:32.125 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:32.461 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:45:32.483 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:46:34.907 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+12:46:34.952 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+12:46:35.686 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+12:46:35.708 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+12:46:42.312 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:46:42.462 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:46:42.469 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:47:24.086 [shutDown@0] ERROR c.browserstack.utils.UtilityMethods - Mark Session Status failed - org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, executeScript {script=browserstack_executor: {"action":"setSessionStatus","arguments":{"reason":"","status":"passed"}}, args=[]}]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 113.0.5672.64, chrome: {chromedriverVersion: 113.0.5672.24 (65f30d4e8051..., userDataDir: C:\Windows\proxy\scoped_dir...}, goog:chromeOptions: {debuggerAddress: localhost:9222}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true, webdriver.remote.sessionid: 7ef9df2b6edbf5cbc10f2b9ba42...}
+12:47:24.316 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/od2ghihnachwigsytmuazym3cjksiwgouhbnhh8w to view build report, insights, and many more debugging information all at one place!
+
+12:47:25.031 [Thread-1] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/9cabdb8ef3bf2d8f59a84d99a5a86abf82c39642
+12:47:25.031 [Thread-1] INFO  c.b.config.BrowserStackConfig - INFO
+12:52:10.202 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.1.1
+12:52:10.251 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+12:52:10.940 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+12:52:10.958 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to testng
+12:52:17.512 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:52:17.698 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+12:52:17.698 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:52:17.708 [setUp@1] INFO  c.b.config.BrowserStackConfig - INFO
+12:52:17.709 [setUp@0] INFO  c.b.config.BrowserStackConfig - INFO
+12:56:20.446 [shutDown@1] ERROR c.browserstack.utils.UtilityMethods - Mark Session Status failed - org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, executeScript {script=browserstack_executor: {"action":"setSessionStatus","arguments":{"reason":"Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.xpath: \/\/a[@class='AccessibleLink HeaderNavigationBarDropdown__medium-link' and contains(@href,'\/original')]' (tried for 5 second(s) with 500 milliseconds interval)","status":"failed"}}, args=[]}]
+Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 14.1.2, javascriptEnabled: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 20G314, safari:platformVersion: 11.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webdriver.remote.sessionid: 3cbe2e1717e598266fd9f31281d..., webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}}
+12:56:41.343 [shutDown@0] ERROR c.browserstack.utils.UtilityMethods - Mark Session Status failed - org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'RABGDC77Y2', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-45-generic', java.version: '1.8.0_372'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, executeScript {script=browserstack_executor: {"action":"setSessionStatus","arguments":{"reason":"com.sun.proxy.$Proxy14 cannot be cast to org.openqa.selenium.By","status":"failed"}}, args=[]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 102.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220623063721, moz:geckodriverVersion: 0.33.0, moz:headless: false, moz:processID: 11944, moz:profile: C:\Windows\proxy\rust_mozpr..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webdriver.remote.sessionid: f4f29a7b4b5876c01d52b932115...}
+12:56:41.576 [main] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/ikbj40n824ongbr6j7xttvn43skm07dflalk8i2j to view build report, insights, and many more debugging information all at one place!
+
+12:56:42.284 [Thread-1] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/ee56f2ed4db098c144108138dedadb35b4436169
+12:56:42.285 [Thread-1] INFO  c.b.config.BrowserStackConfig - INFO
+14:13:06.398 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:13:07.048 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:13:07.058 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:17:17.769 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:17:18.056 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:17:18.068 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:42:52.889 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:42:53.152 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:42:53.166 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:47:42.166 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:47:42.438 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:47:42.459 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:47:44.277 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:47:44.583 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:47:44.596 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:50:18.478 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:50:18.769 [main] INFO  c.b.config.BrowserStackConfig - INFO
+14:50:18.783 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:14:08.814 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:14:08.827 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:14:23.464 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:14:23.472 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:14:53.270 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:14:53.285 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:15:13.966 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:15:13.974 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:20:45.637 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:20:45.656 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:21:05.532 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:21:05.538 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:29:38.619 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:29:38.634 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:29:53.103 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:29:53.118 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:30:56.260 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:30:56.273 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:31:23.163 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:31:23.167 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:32:04.248 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:32:04.269 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:32:19.643 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:32:19.647 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:35:41.815 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:35:41.832 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:35:57.402 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:35:57.406 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:36:53.011 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:36:53.026 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:37:27.768 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:37:27.775 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:39:28.381 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:39:28.398 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:39:50.619 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:39:50.628 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:40:16.131 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:40:16.150 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:40:37.814 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:40:37.823 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:41:00.211 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:41:00.225 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:41:15.999 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:41:16.004 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:41:49.754 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:41:49.768 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:42:14.912 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:42:14.933 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:43:01.688 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:43:01.695 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:43:41.813 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:43:41.832 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:44:00.900 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:44:00.907 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:44:23.526 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:44:23.788 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:44:23.805 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:48:56.749 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:48:57.014 [main] INFO  c.b.config.BrowserStackConfig - INFO
+15:48:57.028 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:40:31.407 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:40:32.339 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:40:32.364 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:41:56.136 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:41:56.393 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:41:56.409 [main] INFO  c.b.config.BrowserStackConfig - INFO
+10:05:31.064 [main] INFO  c.b.config.BrowserStackConfig - INFO
+10:05:31.338 [main] INFO  c.b.config.BrowserStackConfig - INFO
+10:05:31.354 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:08:59.212 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:09:05.613 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:09:05.629 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:10:14.683 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:10:15.234 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:10:15.271 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:20.321 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:20.781 [main] INFO  c.b.config.BrowserStackConfig - INFO
+12:13:20.806 [main] INFO  c.b.config.BrowserStackConfig - INFO

@@ -1,9 +1,6 @@
 package com.sqli.testauto.nespresso.nespressopages;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -55,6 +52,8 @@ public class NespressoHomePage {
     public void goToCapsulesPage(){
         hoverOverNavigationMenuLink(capsulesNavigationMenuLink);
         clickOnLink(orderLink);
+//        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//title[contains(text(),'Capsules')]")));
+        driver.findElement(By.xpath("//title[contains(text(),'Capsules')]"));
     }
 
     public void goToMachinesPage() {

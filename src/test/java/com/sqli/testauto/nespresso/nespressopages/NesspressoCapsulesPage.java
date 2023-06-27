@@ -10,7 +10,6 @@ import org.testng.Assert;
 public class NesspressoCapsulesPage {
     private WebDriver driver;
     private WebDriverWait wait;
-
     private boolean capsuleExist = false;
     public boolean isCapsuleExist() {
         return capsuleExist;
@@ -30,10 +29,6 @@ public class NesspressoCapsulesPage {
     WebElement cartCountElement;
     @FindBy(id = "ta-mini-basket__checkout")
     WebElement proceedToCheckoutButton;
-
-
-
-    //not strong
     @FindBy(xpath = "//div[@class='AddToBagButtonSmall__quantity'][1]")
     WebElement numberOfItemsInButtonDiv;
     //not strong
@@ -43,17 +38,15 @@ public class NesspressoCapsulesPage {
 
     public NesspressoCapsulesPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 6);
+        this.wait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
     }
     public void addProductToCartWithValidQuantity(String productName, String quantity){
         scrollToCapsules(productName);
-        if(capsuleExist){
-            clickOnAddToCartButtonOfSpecifiedProduct(productName);
-            setCapsuleQuantity(quantity);
-            clickOnOKButton();
-            WaitForCartToBeUpdated();
-        }
+        clickOnAddToCartButtonOfSpecifiedProduct(productName);
+        setCapsuleQuantity(quantity);
+        clickOnOKButton();
+        WaitForCartToBeUpdated();
     }
     public void addProductToCartWithInvalidQuantityAndStop(String productName, String quantity){
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
@@ -61,24 +54,18 @@ public class NesspressoCapsulesPage {
         clickOnOKButton();
     }
     public void scrollToCapsules(String productName){
-        String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
-        // waiting for the article that has the specified title to be present in the page
         try {
-//            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
+            String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
             driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
-//            System.out.println("capsule found using wait");
             System.out.println("capsule with name " + productName + " found using driver.findElementBy");
-            capsuleExist = true;
             JavascriptExecutor jse = (JavascriptExecutor) driver;
-            // Scrolling down the page till the element is found
             WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
             jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
             jse.executeScript("window.scrollBy(0,-100)", "");
         }
         catch (Exception ignored){
 //            driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
-            System.out.println("capsule does not exist with the name " + productName + " in products page");
-            capsuleExist = false;
+            Assert.fail("capsule with name: " + productName + " does not exist in page");
         }
     }
 
@@ -94,8 +81,6 @@ public class NesspressoCapsulesPage {
         //scroll to bottom
 //        ((JavascriptExecutor) driver)
 //                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
-
 
         String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton')]";
 //        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton AddToBagButtonSmall')]";
@@ -186,32 +171,6 @@ public class NesspressoCapsulesPage {
             driver.findElement((By) filledCart).click();
         }
     }
-
-    public void verifyItemCount(){
-    wait.until(ExpectedConditions.elementToBeClickable(numberOfItemsInButtonDiv));
-    wait.until(ExpectedConditions.elementToBeClickable(numberOfItemsInCartSpan));
-
-    String stringNumberOfItemsInButtonDiv = numberOfItemsInButtonDiv.getText();
-    String stringNumberOfItemsInCartSpan = numberOfItemsInCartSpan.getText();
-
-//        String substringInCartSpan = stringNumberOfItemsInCartSpan.substring(1, stringNumberOfItemsInCartSpan.indexOf(" "));
-//        Assert.assertEquals(stringNumberOfItemsInButtonDiv, substringInCartSpan);
-
-    Assert.assertTrue(stringNumberOfItemsInCartSpan.contains(stringNumberOfItemsInButtonDiv));
-//        System.out.println("substringInCartSpan is " + substringInCartSpan);
-    System.out.println("stringNumberOfItemsInButtonDiv is " + stringNumberOfItemsInButtonDiv);
-    System.out.println("stringNumberOfItemsInCartSpan is " + stringNumberOfItemsInCartSpan);
-    }
-
-//        public void getCartItemCount() {
-//            clickOnFilledCart();
-//            //find span text
-//            String itemCountText = wait.until(ExpectedConditions.elementToBeClickable(cartCountElement)).getText();
-//            String itemCountValue = itemCountText.replaceAll("[^0-9]", "");
-//            int itemCount = Integer.parseInt(itemCountValue);
-//            System.out.println(itemCount);
-//        }
-
 
     public void proceedToCheckout(){
         try {

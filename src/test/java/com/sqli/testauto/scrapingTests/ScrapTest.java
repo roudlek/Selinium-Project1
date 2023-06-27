@@ -76,8 +76,9 @@ public class ScrapTest {
             i++;
             System.out.println(webElement.getText());
         }
-        System.out.println(i);
+        System.out.println(i + webElements.toString());
     }
+
 //    @Test
     public void startTest() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(5);

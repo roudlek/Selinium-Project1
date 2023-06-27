@@ -192,7 +192,7 @@ public class AppTest
     public void maximizeWindowThenMinimize() throws InterruptedException {
         driver.manage().window().maximize();
         Thread.sleep(3000);
-        driver.manage().window().minimize();
+//        driver.manage().window().minimize();
     }
     @Test(priority = 3)
     public void navigateTo(){
