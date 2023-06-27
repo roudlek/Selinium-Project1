@@ -1,4 +1,3 @@
-#
 Feature: Add Capsule to cart
 @Ready
   Scenario Outline: Add product to cart with valid quantity

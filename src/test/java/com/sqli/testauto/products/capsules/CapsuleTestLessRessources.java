@@ -11,7 +11,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import com.browserstack.*;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 public class CapsuleTestLessRessources {

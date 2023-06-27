@@ -28,16 +28,16 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-@CucumberOptions(features = "Features",tags ="@Ready" ,glue = "com/sqli/testauto/nespresso/nespressopages/nespressoStepDefinitionsPages", plugin = {"pretty", "html:target/htmlreports.html","json:target/htmlreports.json"})
-public class CartStepDefinition {
-//public class CartStepDefinition extends AbstractTestNGCucumberTests {
-private WebDriver driver;
-    private ChromeOptions option;
-    private NespressoHomePage nespressoHomePage;
-    private NesspressoCapsulesPage nesspressoCapsulesPage;
-    private boolean executeSetUp = true;
+
+//@CucumberOptions(features = "Features",tags ="@Ready" ,glue = "com/sqli/testauto/nespresso/nespressopages/nespressoStepDefinitionsPages", plugin = {"pretty", "html:target/htmlreports.html","json:target/htmlreports.json"})
+@CucumberOptions(features = "Features",tags ="@Ready" ,glue = "com/sqli/testauto/nespresso/nespressopages/nespressoStepDefinitionsPages")
+public class CartStepDefinition extends AbstractTestNGCucumberTests {
+private static WebDriver driver;
+    private static ChromeOptions option;
+    private static NespressoHomePage nespressoHomePage;
+    private static NesspressoCapsulesPage nesspressoCapsulesPage;
     @BeforeAll
-    public void setUp() throws IOException {
+    public static void before_or_after_all() throws IOException {
         WebDriverManager.chromedriver().setup();
         option = new ChromeOptions();
         option.addArguments("--remote-allow-origins=*");
@@ -58,6 +58,7 @@ private WebDriver driver;
 //        js.executeScript("window.sessionStorage.clear();"); // Clear session storage
         js.executeScript("window.localStorage.clear();"); // Clear local storage
     }
+
 
     @Given("^User is on the home page$")
     public void user_is_on_the_home_page() throws Throwable {
