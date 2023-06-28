@@ -1,149 +1,234 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.sqli.testauto</groupId>
-  <artifactId>Selinium_Project1</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+<groupId>com.sqli.testauto</groupId>
+<artifactId>Selinium_Project1</artifactId>
+<version>1.0-SNAPSHOT</version>
+<packaging>jar</packaging>
 
-  <name>Selinium_Project1</name>
-  <url>http://maven.apache.org</url>
+<name>Selinium_Project1</name>
+<url>http://maven.apache.org</url>
 
-  <properties>
+<properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
-      <project.basedir>target</project.basedir>
-  </properties>
+</properties>
 
-  <dependencies>
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;-->
-      <!-- https://mvnrepository.com/artifact/junit/junit -->
-<!--      <dependency>-->
-<!--          <groupId>junit</groupId>-->
-<!--          <artifactId>junit</artifactId>-->
-<!--          <version>4.13.2</version>-->
-<!--          <scope>test</scope>-->
-<!--      </dependency>-->
-      <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-      <dependency>
-          <groupId>io.cucumber</groupId>
-          <artifactId>cucumber-java</artifactId>
-          <version>7.12.1</version>
-      </dependency>
+    <dependencies>
 
-      <dependency>
-          <groupId>io.cucumber</groupId>
-          <artifactId>cucumber-jvm-deps</artifactId>
-          <version>1.0.6</version>
-          <scope>provided</scope>
-      </dependency>
-<!--       https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-      <dependency>
-          <groupId>io.cucumber</groupId>
-          <artifactId>cucumber-junit</artifactId>
-          <version>7.12.1</version>
-          <scope>test</scope>
-      </dependency>
-<!--       https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
-      <dependency>
-          <groupId>net.masterthought</groupId>
-          <artifactId>cucumber-reporting</artifactId>
-          <version>5.6.1</version>
-      </dependency>
-<!--       https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
-      <dependency>
-          <groupId>io.cucumber</groupId>
-          <artifactId>cucumber-testng</artifactId>
-          <version>7.3.0</version>
-      </dependency>
-      <dependency>
-          <groupId>org.apache.poi</groupId>
-          <artifactId>poi</artifactId>
-          <version>4.1.1</version>
-      </dependency>
-      <dependency>
-          <groupId>org.apache.poi</groupId>
-          <artifactId>poi-ooxml</artifactId>
-          <version>4.1.1</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.5</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-      <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-          <version>4.1.1</version>
-      </dependency>
-    <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.3.3</version>
-    </dependency>
-    <dependency>
-      <groupId>com.browserstack</groupId>
-      <artifactId>browserstack-java-sdk</artifactId>
-      <version>LATEST</version>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-java</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<!-- 3 dependencies able to run cucumber with testNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.12.1</version>
+        </dependency>
+
+<!--        this is for data excel, 2 dependencies that matches-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+        this is for webdriver using github-->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.browserstack</groupId>
+            <artifactId>browserstack-java-sdk</artifactId>
+            <version>LATEST</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>8</source> <!-- Update to the appropriate source version -->
-                    <target>8</target> <!-- Update to the appropriate target version -->
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.6.1</version>-->
+<!--                <configuration>-->
+<!--                    <source>1.8</source>-->
+<!--                    <target>1.8</target>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-resources-plugin</artifactId>-->
+<!--                <version>2.4</version>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>2.21.0</version>-->
+<!--                <configuration>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>testng.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 <!--            <plugin>-->
 <!--                <groupId>net.masterthought</groupId>-->
 <!--                <artifactId>maven-cucumber-reporting</artifactId>-->
-<!--                <version>4.5.0</version>-->
+<!--                <version>3.15.0</version>-->
 <!--                <executions>-->
 <!--                    <execution>-->
 <!--                        <id>execution</id>-->
-<!--                        <phase>test</phase>-->
+<!--                        <phase>verify</phase>-->
 <!--                        <goals>-->
 <!--                            <goal>generate</goal>-->
 <!--                        </goals>-->
 <!--                        <configuration>-->
-<!--                            <projectName>Demo Reports</projectName>-->
-<!--                            <outputDirectory>${project.basedir}</outputDirectory>-->
-<!--                            <inputDirectory>${project.basedir}</inputDirectory>-->
-<!--                            <jsonFiles>-->
-<!--                                <param>**/*.json</param>-->
-<!--                            </jsonFiles>-->
+<!--                            <projectName>MyProjectName</projectName>  &lt;!&ndash; Replace with project name &ndash;&gt;-->
+<!--                            <outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>-->
+<!--                            <cucumberOutput>target/cucumber-reports/CucumberTestReport.json</cucumberOutput>-->
+<!--                            <buildNumber>1</buildNumber>-->
+<!--                            <parallelTesting>false</parallelTesting>-->
 <!--                        </configuration>-->
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <artifactId>maven-dependency-plugin</artifactId>-->
-<!--                <version>3.3.0</version>-->
-<!--                <executions>-->
-<!--                  <execution>-->
-<!--                    <id>getClasspathFilenames</id>-->
-<!--                    <goals>-->
-<!--                      <goal>properties</goal>-->
-<!--                    </goals>-->
-<!--                  </execution>-->
-<!--                </executions>-->
-<!--             </plugin>-->
         </plugins>
     </build>
+
+<!--<dependencies>-->
+<!--    <dependency>-->
+<!--        <groupId>com.browserstack</groupId>-->
+<!--        <artifactId>browserstack-java-sdk</artifactId>-->
+<!--        <version>LATEST</version>-->
+<!--        <scope>compile</scope>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash;    &lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;&ndash;&gt;-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>junit</groupId>-->
+<!--        <artifactId>junit</artifactId>-->
+<!--        <version>4.13.2</version>-->
+<!--        <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>io.cucumber</groupId>-->
+<!--        <artifactId>cucumber-java</artifactId>-->
+<!--        <version>7.1.0</version>-->
+<!--        <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash;      <dependency>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <groupId>io.cucumber</groupId>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <artifactId>cucumber-jvm-deps</artifactId>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <version>1.0.6</version>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <scope>provided</scope>&ndash;&gt;-->
+<!--    &lt;!&ndash;      </dependency>&ndash;&gt;-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-junit &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>io.cucumber</groupId>-->
+<!--        <artifactId>cucumber-junit</artifactId>-->
+<!--        <version>7.1.0</version>-->
+<!--        <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>net.masterthought</groupId>-->
+<!--        <artifactId>cucumber-reporting</artifactId>-->
+<!--        <version>5.6.1</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-testng &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>io.cucumber</groupId>-->
+<!--        <artifactId>cucumber-testng</artifactId>-->
+<!--        <version>7.1.0</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>org.apache.poi</groupId>-->
+<!--        <artifactId>poi</artifactId>-->
+<!--        <version>4.1.1</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>org.apache.poi</groupId>-->
+<!--        <artifactId>poi-ooxml</artifactId>-->
+<!--        <version>4.1.1</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.testng/testng &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.testng</groupId>-->
+<!--        <artifactId>testng</artifactId>-->
+<!--        <version>7.5</version>-->
+<!--        <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.seleniumhq.selenium</groupId>-->
+<!--        <artifactId>selenium-java</artifactId>-->
+<!--        <version>4.1.1</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>io.github.bonigarcia</groupId>-->
+<!--        <artifactId>webdrivermanager</artifactId>-->
+<!--        <version>5.3.3</version>-->
+<!--    </dependency>-->
+<!--</dependencies>-->
+<!--<build>-->
+<!--    <plugins>-->
+<!--        <plugin>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-compiler-plugin</artifactId>-->
+<!--            <version>3.8.1</version>-->
+<!--            <configuration>-->
+<!--                <source>1.8</source> &lt;!&ndash; Update to the appropriate source version &ndash;&gt;-->
+<!--                <target>1.8</target> &lt;!&ndash; Update to the appropriate target version &ndash;&gt;-->
+<!--            </configuration>-->
+<!--        </plugin>-->
+<!--&lt;!&ndash;        <plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;            <groupId>net.masterthought</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <artifactId>maven-cucumber-reporting</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            <version>4.5.0</version>&ndash;&gt;-->
+<!--&lt;!&ndash;            <executions>&ndash;&gt;-->
+<!--&lt;!&ndash;                <execution>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <id>execution</id>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <phase>test</phase>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <goals>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <goal>generate</goal>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </goals>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <configuration>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <projectName>Demo Reports</projectName>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <outputDirectory>${project.basedir}/target</outputDirectory>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <inputDirectory>${project.basedir}/target</inputDirectory>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <jsonFiles>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <param>**/*.json</param>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </jsonFiles>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </configuration>&ndash;&gt;-->
+<!--&lt;!&ndash;                </execution>&ndash;&gt;-->
+<!--&lt;!&ndash;            </executions>&ndash;&gt;-->
+<!--&lt;!&ndash;        </plugin>&ndash;&gt;-->
+<!--    </plugins>-->
+<!--</build>-->
 </project>

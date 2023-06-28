@@ -281,3 +281,11 @@ Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 1
 19:07:42.695 [main] INFO  c.b.config.BrowserStackConfig - INFO
 19:07:42.990 [main] INFO  c.b.config.BrowserStackConfig - INFO
 19:07:43.003 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:46:02.783 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:46:02.796 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:46:03.493 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:46:03.498 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:50:51.515 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:50:51.526 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:57:47.044 [main] INFO  c.b.config.BrowserStackConfig - INFO
+20:57:47.056 [main] INFO  c.b.config.BrowserStackConfig - INFO
