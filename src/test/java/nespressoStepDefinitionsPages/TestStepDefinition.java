@@ -1,0 +1,36 @@
+package nespressoStepDefinitionsPages;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.testng.Assert;
+
+public class TestStepDefinition {
+    @Before
+    public void beforeMethod(){
+        System.out.println("in before method of simple test");
+    }
+    @After
+    public void afterMethod(){
+        System.out.println("in after method of simple test");
+    }
+    @Given("User enters coffee shop")
+    public void userEntersCoffeeShop() {
+        System.out.println("client enters");
+
+    }
+
+    @When("User asks for coffee")
+    public void userAsksForCoffee() {
+        System.out.println("i want espresso please");
+
+    }
+
+    @Then("We gave him coffe")
+    public void weGaveHimCoffe() {
+        System.out.println("here is your order");
+        Assert.fail();
+    }
+}

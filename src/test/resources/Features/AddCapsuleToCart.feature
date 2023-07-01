@@ -1,4 +1,6 @@
 Feature: Add Capsule to cart
+
+  @Ready
   Scenario Outline: Add product to cart with valid quantity
     Given User is on the home page
     And User navigates to the capsules page
@@ -6,9 +8,9 @@ Feature: Add Capsule to cart
     And User opens the shopping cart
     Then the quantity of the selected product <productName> in the cart should be <quantity>
     And the user closes the shopping cart
-  Examples:
-  |productName|quantity|
-  |Chiaro     |20      |
+    Examples:
+      | productName | quantity |
+      | Chiaro      | 20       |
 #  |Ristretto  |50      |
 
 

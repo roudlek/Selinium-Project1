@@ -1,5 +1,5 @@
 Feature : Add machine to cart
-  @Ready
+  @NotReady
   Scenario Outline: Add Machine to cart with valid quantity
   Given User is on the home page
   And User navigates to the machines page

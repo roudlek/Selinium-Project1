@@ -47,6 +47,10 @@ public class CapsuleTest {
         Assert.assertEquals(quantity, quantityInSpan, "Quantity in cart does not match expected value.");
         nesspressoCapsulesPage.closeCart();
     }
+    @Test
+    public void sayHi(){
+        System.out.println("hi from sayHi method");
+    }
     //    @AfterTest
     public void shutDown() {
         if (driver != null) {

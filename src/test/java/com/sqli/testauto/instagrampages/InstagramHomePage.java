@@ -18,15 +18,15 @@ public class InstagramHomePage {
 
     public InstagramHomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,40);
-        PageFactory.initElements(driver,this);
+        this.wait = new WebDriverWait(driver, 40);
+        PageFactory.initElements(driver, this);
     }
 
-    public void clickOnCreateButton(){
+    public void clickOnCreateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(createButton)).click();
     }
 
-    public void clickOnSelectFromComputerButton(){
+    public void clickOnSelectFromComputerButton() {
         wait.until(ExpectedConditions.elementToBeClickable(selectFromComputerButton)).click();
     }
 }
