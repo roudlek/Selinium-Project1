@@ -3,20 +3,16 @@ package com.sqli.testauto.nespresso.nespressopages.nespressoSetUp;
 import com.sqli.testauto.nespresso.manageExcelData.ReadExcel;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
 import com.sqli.testauto.nespresso.nespressopages.NespressoMachinesPage;
-import com.sqli.testauto.nespresso.nespressopages.NesspressoCapsulesPage;
+import com.sqli.testauto.nespresso.nespressopages.NespressoCapsulesPage;
 import com.sqli.testauto.products.capsules.ReadCapsuleData;
 import com.sqli.testauto.products.machines.ReadMachineData;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
@@ -26,7 +22,7 @@ public class NespressoSetUp {
     private WebDriver driver;
     private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
-    private NesspressoCapsulesPage nesspressoCapsulesPage;
+    private NespressoCapsulesPage nespressoCapsulesPage;
     private NespressoMachinesPage nespressoMachinesPage;
     String quantityInString;
     int ValidQuantityInExcelFile;
@@ -44,7 +40,7 @@ public class NespressoSetUp {
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
-        nesspressoCapsulesPage = new NesspressoCapsulesPage(driver);
+        nespressoCapsulesPage = new NespressoCapsulesPage(driver);
         nespressoMachinesPage = new NespressoMachinesPage(driver);
 
 //        ValidQuantityInExcelFile = Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(1));
@@ -78,11 +74,11 @@ public class NespressoSetUp {
         nespressoHomePage.acceptCookie();
         // reinistialiser la session(new solution to reduce ressources)
         nespressoHomePage.goToCapsulesPage();
-        nesspressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
-        nesspressoCapsulesPage.clickOnCart();
-        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
+        nespressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
+        nespressoCapsulesPage.clickOnCart();
+        String quantityInSpan = nespressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
         Assert.assertEquals(quantity, quantityInSpan,"Quantity in cart does not match expected value.");
-        nesspressoCapsulesPage.closeCart();
+        nespressoCapsulesPage.closeCart();
         shutDown();
     }
 //    @AfterTest
@@ -110,7 +106,7 @@ public class NespressoSetUp {
         if(nespressoMachinesPage.isMachineAvailable){
             String quantityInSpan = nespressoMachinesPage.getQuantityOfSelectedProductInCartSpan(machineName);
             Assert.assertEquals(quantity, quantityInSpan,"Quantity in cart does not match expected value.");
-            nesspressoCapsulesPage.closeCart();
+            nespressoCapsulesPage.closeCart();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -123,11 +119,11 @@ public class NespressoSetUp {
     public void addProductToCartWithValidQuantityWithHardCoding(){
 //        nespressoHomePage.acceptCookie();
         nespressoHomePage.goToCapsulesPage();
-        nesspressoCapsulesPage.addProductToCartWithValidQuantity("Ristretto","30");
-        nesspressoCapsulesPage.clickOnCart();
-        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan("Ristretto");
+        nespressoCapsulesPage.addProductToCartWithValidQuantity("Ristretto","30");
+        nespressoCapsulesPage.clickOnCart();
+        String quantityInSpan = nespressoCapsulesPage.getQuantityOfSelectedProductInCartSpan("Ristretto");
         Assert.assertEquals("30", quantityInSpan );
-        nesspressoCapsulesPage.closeCart();
+        nespressoCapsulesPage.closeCart();
     }
 
 
@@ -137,21 +133,21 @@ public class NespressoSetUp {
         nespressoHomePage.goToCapsulesPage();
         for (int rowNumberOfData = 1;rowNumberOfData <= 10; rowNumberOfData++){
             addProductToCartWithValidQuantity(rowNumberOfData);
-            nesspressoCapsulesPage.clickOnCart();
+            nespressoCapsulesPage.clickOnCart();
             int quantityInSpan = GetQuantityOfSelectedProductInCartSpan(rowNumberOfData);
             int quantityInExcel = getValidQuantityFromExcelFile(rowNumberOfData);
             Assert.assertEquals(quantityInExcel, quantityInSpan );
-            nesspressoCapsulesPage.closeCart();
+            nespressoCapsulesPage.closeCart();
         }
     }
     public void addProductToCartWithValidQuantity(int rowNumber){
-        nesspressoCapsulesPage.addProductToCartWithValidQuantity
+        nespressoCapsulesPage.addProductToCartWithValidQuantity
                 (ReadExcel.getProductNameFromExcelFile(rowNumber),
                         (ReadExcel.getValidQuantityFromExcelFile(rowNumber)));
     }
 
     public int GetQuantityOfSelectedProductInCartSpan(int rowNumber){
-        return Integer.parseInt(nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(ReadExcel.getProductNameFromExcelFile(rowNumber)));
+        return Integer.parseInt(nespressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(ReadExcel.getProductNameFromExcelFile(rowNumber)));
     }
     public int getValidQuantityFromExcelFile(int rowNumber){
         return Integer.parseInt(ReadExcel.getValidQuantityFromExcelFile(rowNumber));

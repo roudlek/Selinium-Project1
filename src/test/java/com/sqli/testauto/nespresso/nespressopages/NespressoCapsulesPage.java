@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class NesspressoCapsulesPage {
+public class NespressoCapsulesPage {
     private WebDriver driver;
     private WebDriverWait wait;
     private boolean capsuleExist = false;
@@ -36,7 +36,7 @@ public class NesspressoCapsulesPage {
     WebElement numberOfItemsInCartSpan;
 
 
-    public NesspressoCapsulesPage(WebDriver driver) {
+    public NespressoCapsulesPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
@@ -100,7 +100,7 @@ public class NesspressoCapsulesPage {
 
         // this works as well
         //span[text()='Jamaica Blue Mountain']//ancestor::td//span[@class='MiniBasketItemPriceAndName__price-calc']
-        String SpanOfMiniBasketOfSpecifiedProduct = "//td[.//span[text()='"+ productName + "']]//span[@class='MiniBasketItemPriceAndName__price-calc']";
+        String SpanOfMiniBasketOfSpecifiedProduct = "//td[.//span[contains(text(),'" + productName + "')]]//span[@class='MiniBasketItemPriceAndName__price-calc']";
         String stringNumberOfItemsInCartSpan;
         try {
             stringNumberOfItemsInCartSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SpanOfMiniBasketOfSpecifiedProduct))).getText();

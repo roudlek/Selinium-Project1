@@ -1,3 +1,4 @@
+@Nesspresso
 Feature: Add Capsule to cart
 
   @Ready

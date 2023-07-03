@@ -1,3 +1,4 @@
+@simpleTestsHooks
 Feature: print something
 
   Scenario: print something for test

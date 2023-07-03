@@ -1,18 +1,14 @@
 package com.sqli.testauto.products.machines;
 
-import com.sqli.testauto.nespresso.manageExcelData.ReadExcel;
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
 import com.sqli.testauto.nespresso.nespressopages.NespressoMachinesPage;
-import com.sqli.testauto.nespresso.nespressopages.NesspressoCapsulesPage;
-import com.sqli.testauto.products.capsules.ReadCapsuleData;
+import com.sqli.testauto.nespresso.nespressopages.NespressoCapsulesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -24,7 +20,7 @@ public class MachineTest {
     private WebDriver driver;
     private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
-    private NesspressoCapsulesPage nesspressoCapsulesPage;
+    private NespressoCapsulesPage nespressoCapsulesPage;
     private NespressoMachinesPage nespressoMachinesPage;
 
     private boolean executeSetUp = true;
@@ -41,7 +37,7 @@ public class MachineTest {
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
-        nesspressoCapsulesPage = new NesspressoCapsulesPage(driver);
+        nespressoCapsulesPage = new NespressoCapsulesPage(driver);
         nespressoMachinesPage = new NespressoMachinesPage(driver);
         driver.manage().window().maximize();
         String domain = "https://www.nespresso.com/fr/en";
@@ -77,7 +73,7 @@ public class MachineTest {
         if(nespressoMachinesPage.isMachineAvailable){
             String quantityInSpan = nespressoMachinesPage.getQuantityOfSelectedProductInCartSpan(machineName);
             Assert.assertEquals(quantity, quantityInSpan,"Quantity in cart does not match expected value.");
-            nesspressoCapsulesPage.closeCart();
+            nespressoCapsulesPage.closeCart();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

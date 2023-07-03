@@ -1,7 +1,7 @@
 package com.sqli.testauto.products.capsules;
 
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
-import com.sqli.testauto.nespresso.nespressopages.NesspressoCapsulesPage;
+import com.sqli.testauto.nespresso.nespressopages.NespressoCapsulesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
@@ -10,14 +10,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import com.browserstack.*;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 public class CapsuleTestLessRessources {
     private WebDriver driver;
     private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
-    private NesspressoCapsulesPage nesspressoCapsulesPage;
+    private NespressoCapsulesPage nespressoCapsulesPage;
     private boolean executeSetUp = true;
     @BeforeClass
     public void setUp() throws IOException {
@@ -29,7 +29,7 @@ public class CapsuleTestLessRessources {
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
-        nesspressoCapsulesPage = new NesspressoCapsulesPage(driver);
+        nespressoCapsulesPage = new NespressoCapsulesPage(driver);
         String domain = "https://www.google.com";
         driver.manage().window().maximize();
         driver.get(domain);
@@ -48,18 +48,18 @@ public class CapsuleTestLessRessources {
     public void addProductToCartWithValidQuantityOneByOne(String productName, String quantity) throws IOException {
         // reinitialize session(new solution to reduce ressources using @BeforeMethod that clear local storage)
         nespressoHomePage.goToCapsulesPage();
-        nesspressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
-        nesspressoCapsulesPage.clickOnCart();
-        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
+        nespressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
+        nespressoCapsulesPage.clickOnCart();
+        String quantityInSpan = nespressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
         Assert.assertEquals(quantity, quantityInSpan,"Quantity in cart does not match expected value.");
 //        nesspressoCapsulesPage.closeCart();
     }
     @Test
     public void addProductToCartWithValidQuantityWithHardCoding(){
         nespressoHomePage.goToCapsulesPage();
-        nesspressoCapsulesPage.addProductToCartWithValidQuantity("Ristretto","30");
-        nesspressoCapsulesPage.clickOnCart();
-        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan("Ristretto");
+        nespressoCapsulesPage.addProductToCartWithValidQuantity("Ristretto","30");
+        nespressoCapsulesPage.clickOnCart();
+        String quantityInSpan = nespressoCapsulesPage.getQuantityOfSelectedProductInCartSpan("Ristretto");
         Assert.assertEquals("30", quantityInSpan );
 //        nesspressoCapsulesPage.closeCart();
     }

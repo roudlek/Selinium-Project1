@@ -1,7 +1,7 @@
 package com.sqli.testauto.products.capsules;
 
 import com.sqli.testauto.nespresso.nespressopages.NespressoHomePage;
-import com.sqli.testauto.nespresso.nespressopages.NesspressoCapsulesPage;
+import com.sqli.testauto.nespresso.nespressopages.NespressoCapsulesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +18,7 @@ public class CapsuleTest {
     private WebDriver driver;
     private ChromeOptions option;
     private NespressoHomePage nespressoHomePage;
-    private NesspressoCapsulesPage nesspressoCapsulesPage;
+    private NespressoCapsulesPage nespressoCapsulesPage;
     private boolean executeSetUp = true;
     @BeforeTest
     public void setUp() throws IOException {
@@ -30,7 +30,7 @@ public class CapsuleTest {
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         nespressoHomePage = new NespressoHomePage(driver);
-        nesspressoCapsulesPage = new NesspressoCapsulesPage(driver);
+        nespressoCapsulesPage = new NespressoCapsulesPage(driver);
         driver.manage().window().maximize();
         String domain = "https://www.nespresso.com/fr/en";
         executeSetUp = true;
@@ -41,11 +41,11 @@ public class CapsuleTest {
     @Test(dataProvider = "getCapsulesAndValidQuantity", dataProviderClass = ReadCapsuleData.class)
     public void addMultipleProductsToCartWithValidQuantityInOneTest(String productName, String quantity) throws IOException {
         // reinistialiser la session(new solution to reduce ressources)
-        nesspressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
-        nesspressoCapsulesPage.clickOnCart();
-        String quantityInSpan = nesspressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
+        nespressoCapsulesPage.addProductToCartWithValidQuantity(productName,quantity);
+        nespressoCapsulesPage.clickOnCart();
+        String quantityInSpan = nespressoCapsulesPage.getQuantityOfSelectedProductInCartSpan(productName);
         Assert.assertEquals(quantity, quantityInSpan, "Quantity in cart does not match expected value.");
-        nesspressoCapsulesPage.closeCart();
+        nespressoCapsulesPage.closeCart();
     }
     @Test
     public void sayHi(){

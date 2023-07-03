@@ -2,6 +2,7 @@ package nespressoStepDefinitionsPages;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,11 +11,11 @@ import org.testng.Assert;
 import java.io.IOException;
 
 public class TestStepDefinition {
-    @Before
-    public void beforeMethod(){
-        System.out.println("in before method of simple test");
+    @Before("@simpleTestsHooks")
+    public void beforeOfSimpleTest() {
+        System.out.println("from before of @beforeOfSimpleTest");
     }
-    @After
+    @After("@simpleTestsHooks")
     public void afterMethod(){
         System.out.println("in after method of simple test");
     }
