@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 public class NespressoMachinesPage {
     private WebDriver driver;
     private WebDriverWait wait;
@@ -54,27 +52,22 @@ public class NespressoMachinesPage {
         }
     }
 
-    public boolean isAddToCartButtonEnabled(String machineName){
-        String addToCartButtonXpath = "//h1[contains(text(),'" + machineName + "')]//ancestor::div//button[contains(@class,'AddToBagButton')]";
-        WebElement addToCartButton = driver.findElement(By.xpath(addToCartButtonXpath));
-        boolean isAddToCartButtonEnabled = addToCartButton.isDisplayed() && addToCartButton.isEnabled();
-        isMachineAvailable = isAddToCartButtonEnabled;
-        System.out.println("Add to Bag button " + (isAddToCartButtonEnabled ? "found and enabled" : "not found or not enabled, probably item out of stock"));
-
-        return isAddToCartButtonEnabled;
-    }
-    public void tryAddProductToCart(String machineName, String quantity){
+//    public boolean isAddToCartButtonEnabled(String machineName){
+//        String addToCartButtonXpath = "//h1[contains(text(),'" + machineName + "')]//ancestor::div//button[contains(@class,'AddToBagButton')]";
+//        WebElement addToCartButton = driver.findElement(By.xpath(addToCartButtonXpath));
+//        boolean isAddToCartButtonEnabled = addToCartButton.isDisplayed() && addToCartButton.isEnabled();
+//        isMachineAvailable = isAddToCartButtonEnabled;
+//        System.out.println("Add to Bag button " + (isAddToCartButtonEnabled ? "found and enabled" : "not found or not enabled, probably item out of stock"));
+//
+//        return isAddToCartButtonEnabled;
+//    }
+    public void addProductToCart(String machineName, String quantity){
         String AddToCartButtonXpath = "//h1[contains(text(),'" + machineName + "')]//ancestor::div//button[contains(@class,'AddToBagButton')]";
-        if(isAddToCartButtonEnabled(machineName)){
-            driver.findElement(By.xpath(AddToCartButtonXpath)).click();
-            setMachineQuantity(quantity);
-            clickOnOKButton();
-            WaitForCartToBeUpdated();
-            clickOnCart();
-        }
-        else{
-            System.out.println("add to bag button not found");
-        }
+        driver.findElement(By.xpath(AddToCartButtonXpath)).click();
+        setMachineQuantity(quantity);
+        clickOnOKButton();
+        WaitForCartToBeUpdated();
+        clickOnCart();
     }
     public void setMachineQuantity(String quantity){
         wait.until(ExpectedConditions.elementToBeClickable(quantitySelector)).sendKeys(quantity);
@@ -121,6 +114,6 @@ public class NespressoMachinesPage {
     public void addMachineToCartWithValidQuantity(String machineName, String quantity){
         scrollToMachine(machineName);
         selectMachine(machineName);
-        tryAddProductToCart(machineName,quantity);
+        addProductToCart(machineName,quantity);
     }
 }

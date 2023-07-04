@@ -7,5 +7,4 @@ import org.junit.runner.RunWith;
 @RunWith(Karate.class)
 @KarateOptions(features = "classpath:KarateFeatures")
 public class KarateRunner {
-
 }

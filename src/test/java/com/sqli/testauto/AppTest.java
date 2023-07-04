@@ -186,7 +186,7 @@ public class AppTest
     public void getTitle(){
         String title = driver.getTitle();
         System.out.println(driver.getTitle());
-        Assert.assertEquals(title,"Google");
+        Assert.assertEquals(title,"Login | Le Club | Nespresso");
     }
     @Test(priority = 2)
     public void maximizeWindowThenMinimize() throws InterruptedException {

@@ -42,13 +42,6 @@
             <artifactId>karate-core</artifactId>
             <version>1.0.1</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.intuit.karate</groupId>-->
-<!--            <artifactId>karate-apache</artifactId>-->
-<!--            <version>0.9.6</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.intuit.karate/karate-junit4 -->
         <dependency>
             <groupId>com.intuit.karate</groupId>
@@ -56,6 +49,19 @@
             <version>1.0.1</version>
             <scope>test</scope>
         </dependency>
+
+
+
+
+
+
+<!--        <dependency>-->
+<!--            <groupId>com.intuit.karate</groupId>-->
+<!--            <artifactId>karate-apache</artifactId>-->
+<!--            <version>0.9.6</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
 
         <!--        maven compiler plugin and properties of compiler didnt work-->
         <dependency>
@@ -114,6 +120,14 @@
         </dependency>
     </dependencies>
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
