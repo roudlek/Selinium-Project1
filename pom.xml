@@ -17,7 +17,21 @@
     </properties>
 
     <dependencies>
-<!--        &lt;!&ndash; JUnit 5 &ndash;&gt;-->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.appium/java-client &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.appium</groupId>-->
+<!--            <artifactId>java-client</artifactId>-->
+<!--            <version>4.1.2</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-android-driver &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.seleniumhq.selenium</groupId>-->
+<!--            <artifactId>selenium-android-driver</artifactId>-->
+<!--            <version>2.39.0</version>-->
+<!--        </dependency>-->
+
+        <!--        &lt;!&ndash; JUnit 5 &ndash;&gt;-->
 <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-junit &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>io.cucumber</groupId>-->
@@ -36,6 +50,7 @@
 <!--        </dependency>-->
 
 
+<!--karate dependencies-->
         <!-- https://mvnrepository.com/artifact/com.intuit.karate/karate-core -->
         <dependency>
             <groupId>com.intuit.karate</groupId>
@@ -49,12 +64,6 @@
             <version>1.0.1</version>
             <scope>test</scope>
         </dependency>
-
-
-
-
-
-
 <!--        <dependency>-->
 <!--            <groupId>com.intuit.karate</groupId>-->
 <!--            <artifactId>karate-apache</artifactId>-->

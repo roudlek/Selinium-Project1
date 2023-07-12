@@ -27,12 +27,10 @@ public class InstagramTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         instagramHomePage = new InstagramHomePage(driver);
-
     }
 
     @Test
     public void uploadAnImageToInstagram(){
         driver.get("https://www.instagram.com/");
-
     }
 }
