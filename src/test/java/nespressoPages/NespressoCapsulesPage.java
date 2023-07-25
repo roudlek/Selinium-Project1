@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import static nespressoPages.UsefullFonctions.getInnerElementText;
 
 public class NespressoCapsulesPage {
     private WebDriver driver;
@@ -164,16 +163,23 @@ public class NespressoCapsulesPage {
 //    }
 
     ////
+
     public void waitForCartToBeUpdated() {
         // Wait for the value of the cart to change
-        String oldValueOfCartButton = UsefullFonctions.getInnerElementText(Emptycart);
+        String oldValueOfCartButton = getInnerElementText(Emptycart).trim();
         System.out.println("the old value: " + oldValueOfCartButton);
 
         WebDriverWait wait = new WebDriverWait(driver, 8);
         wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(Emptycart, oldValueOfCartButton)));
 
-        String newValueOfCartButton = UsefullFonctions.getInnerElementText(Emptycart);
+        String newValueOfCartButton = getInnerElementText(Emptycart).trim();
         System.out.println("the new value: " + newValueOfCartButton);
+    }
+
+    // Helper method to get the inner text of an element using JavaScriptExecutor
+    private String getInnerElementText(WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        return (String) jsExecutor.executeScript("return arguments[0].innerText", element);
     }
 
     // Helper method to get the inner text of an element using JavaScriptExecutor
@@ -221,6 +227,8 @@ public class NespressoCapsulesPage {
         }
 
         button.click();
+
+
     }
 
     public void enterOrPickQuantity(final String quantity) {

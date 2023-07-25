@@ -1,5 +1,7 @@
 package stepDefinitionPages;
 
+import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,6 +10,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import nespressoPages.NespressoCapsulesPage;
 import nespressoPages.UsefullFonctions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -58,6 +61,8 @@ public class productPageStepDefinition {
         nespressoCapsulesPage.pickQuantity(quantity);
         nespressoCapsulesPage.waitForCartToBeUpdated();
 
+// wait until a class appear like filled cart
+
 
         // Add code to add the specified quantity of the product capsule to the cart
     }
@@ -81,6 +86,20 @@ public class productPageStepDefinition {
 //            return 10;
 //        } else {
 //            return 0;
+//        }
+//    }
+    @After
+    public void reinitializeSession() {
+        driver.manage().deleteAllCookies();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.sessionStorage.clear();"); // Clear session storage
+        js.executeScript("window.localStorage.clear();"); // Clear local storage
+        System.out.println("after was executed");
+    }
+//    @AfterAll
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
 //        }
 //    }
 

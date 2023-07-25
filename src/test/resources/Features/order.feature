@@ -12,3 +12,4 @@ to find specific block (add button) per product name in a list of products
     Examples:
       |product|quantity|
       |TOKYO VIVALTO LUNGO| 10 |
+      |Ispirazione Venezia| 10 |

@@ -38,8 +38,4 @@ public class UsefullFonctions {
             System.out.println("Text of element didn't change");
         }
     }
-    public static String getInnerElementText(WebElement element) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        return (String) jsExecutor.executeScript("return arguments[0].innerText", element);
-    }
 }
