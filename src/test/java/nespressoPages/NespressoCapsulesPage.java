@@ -1,4 +1,4 @@
-package com.sqli.testauto.nespresso.nespressopages;
+package nespressoPages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -7,15 +7,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import static nespressoPages.UsefullFonctions.getInnerElementText;
+
 public class NespressoCapsulesPage {
     private WebDriver driver;
     private WebDriverWait wait;
     private boolean capsuleExist = false;
-    public boolean isCapsuleExist() {
-        return capsuleExist;
-    }
     @FindBy(xpath = "//button[contains(@class,'AddToBagButton')]")
     WebElement addToCartButton;
+
+
 
     @FindBy(id = "ta-quantity-selector__custom-field")
     WebElement quantitySelector;
@@ -23,7 +24,7 @@ public class NespressoCapsulesPage {
     WebElement okButton;
     @FindBy(xpath = "//button[contains(@class,'MiniBasketButton--not-empty')]")
     WebElement filledCart;
-    @FindBy(xpath = "//button[contains(@class,'MiniBasketButton')]")
+    @FindBy(xpath = "//div[@data-block='minicart']//span[@class='items qty']//span[@class='counter-number']")
     WebElement Emptycart;
     @FindBy(className = "MiniBasketItemCategory__item-count']")
     WebElement cartCountElement;
@@ -41,56 +42,64 @@ public class NespressoCapsulesPage {
         this.wait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
     }
-    public void addProductToCartWithValidQuantity(String productName, String quantity){
+
+    public void addProductToCartWithValidQuantity(String productName, String quantity) {
         scrollToCapsules(productName);
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
         setCapsuleQuantity(quantity);
         clickOnOKButton();
-        WaitForCartToBeUpdated();
+        waitForCartToBeUpdated();
     }
-    public void addProductToCartWithInvalidQuantityAndStop(String productName, String quantity){
+
+    public void addProductToCartWithInvalidQuantityAndStop(String productName, String quantity) {
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
         setCapsuleQuantity(quantity);
         clickOnOKButton();
     }
-    public void scrollToCapsules(String productName){
+
+
+    public void scrollToCapsules(String product) {
+        wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@id='_evidon-accept-button']")))).click();
+        String capitalizedProduct = UsefullFonctions.capitalizeEachWordInString(product);
+        String xpathOfScrollToTheSpecifiedProduct = "//a[contains(text(),'" + capitalizedProduct + "')]";
+//        String xpathOfScrollToTheSpecifiedProduct = "//a[contains(text(),'" + product + "')]//ancestor::strong";
+        // waiting for the article that has the specified title to be present in the page
         try {
-            String xpathOfScrollToTheSpecifiedProduct = "//h3[contains(text(),'" + productName + "')]//ancestor::article";
             driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
-            System.out.println("capsule with name " + productName + " found using driver.findElementBy");
             JavascriptExecutor jse = (JavascriptExecutor) driver;
+            // Scrolling down the page till the element is found
             WebElement productToScrollTo = driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
             jse.executeScript("arguments[0].scrollIntoView();", productToScrollTo);
-            jse.executeScript("window.scrollBy(0,-100)", "");
-        }
-        catch (Exception ignored){
-//            driver.findElement(By.xpath(xpathOfScrollToTheSpecifiedProduct));
-            Assert.fail("capsule with name: " + productName + " does not exist in page");
+            jse.executeScript("window.scrollBy(0,-700)", "");
+        } catch (Exception ignored) {
+            Assert.fail("capsule with name: " + capitalizedProduct + " does not exist in page");
+//            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathOfScrollToTheSpecifiedProduct)));
         }
     }
 
-    public void addProductToCartWithEditedQuantity(String productName, String quantity){
+    public void addProductToCartWithEditedQuantity(String productName, String quantity) {
         clickOnAddToCartButtonOfSpecifiedProduct(productName);
         setCapsuleQuantity(quantity);
         clickOnOKButton();
         clickOnOKButton();
-        WaitForCartToBeUpdated();
+        waitForCartToBeUpdated();
     }
 
-    public void clickOnAddToCartButtonOfSpecifiedProduct(String productName) {
-        //scroll to bottom
-//        ((JavascriptExecutor) driver)
-//                .executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
-        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton')]";
-//        String AddToBagButtonXpath = "//h3[contains(text(),'" + productName + "')]//ancestor::article//button[contains(@class,'AddToBagButton AddToBagButtonSmall')]";
-        WebElement addToCartButtonOfSpecifiedProduct =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath(AddToBagButtonXpath)));
-        addToCartButtonOfSpecifiedProduct.click();
-
-//        jse.executeScript("window.scrollTo(0, document.documentElement.scrollTop || document.body.scrollTop);");
+    public void clickOnAddToCartButtonOfSpecifiedProduct(String product) {
+        String capitalizedProduct = UsefullFonctions.capitalizeEachWordInString(product);
+        String addToBagButtonXpath =
+                "//a[contains(text(),'" + capitalizedProduct + "')]//ancestor::div[contains(@class,'product-item-details')]//button";
+        try {
+            WebElement addToBagButton = driver.findElement(By.xpath(addToBagButtonXpath));
+            addToBagButton.click();
+        } catch (NoSuchElementException e) {
+            Assert.fail("Add to bag button of" + capitalizedProduct + " not found ");
+        }
+//        WebElement addToCartButtonOfSpecifiedProduct =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath(AddToBagButtonXpath)));
+//        addToCartButtonOfSpecifiedProduct.click();
     }
 
-    public String getQuantityOfSelectedProductInCartSpan(String productName){
+    public String getQuantityOfSelectedProductInCartSpan(String productName) {
         //this works as well
         //article[.//h3[contains(text(),'Caramello')]]//div[@class='AddToBagButtonSmall__quantity']
 
@@ -104,8 +113,7 @@ public class NespressoCapsulesPage {
         String stringNumberOfItemsInCartSpan;
         try {
             stringNumberOfItemsInCartSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SpanOfMiniBasketOfSpecifiedProduct))).getText();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             stringNumberOfItemsInCartSpan = driver.findElement(By.xpath(SpanOfMiniBasketOfSpecifiedProduct)).getText();
         }
 
@@ -125,71 +133,103 @@ public class NespressoCapsulesPage {
         return substringInCartSpan;
     }
 
-    public void clickOnAddToCartButton(){
+    public void clickOnAddToCartButton() {
         try {
             addToCartButton.click();
-        }
-        catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         }
     }
-    public void setCapsuleQuantity(String quantity){
+
+    public void setCapsuleQuantity(String quantity) {
         wait.until(ExpectedConditions.elementToBeClickable(quantitySelector)).sendKeys(quantity);
     }
-    public void clickOnOKButton(){
+
+    public void clickOnOKButton() {
         try {
             driver.findElement(By.xpath("//button[@class='QuantitySelectorCustomField__button-ok']")).click();
 //            driver.findElement((By) okButton).click(); // this does not work
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             wait.until(ExpectedConditions.elementToBeClickable(okButton)).click();
         }
     }
-    public void WaitForCartToBeUpdated(){
-        //wait until value of filled cart change
-        String oldValueOfCartButton = Emptycart.getText();
-        System.out.println(oldValueOfCartButton);
-        new WebDriverWait(driver,8).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(Emptycart,oldValueOfCartButton)));
-        String newValueOfCartButton = Emptycart.getText();
-        System.out.println(newValueOfCartButton);
+
+//    public void waitForCartToBeUpdated() {
+//        //wait until value of filled cart change
+//        String oldValueOfCartButton = Emptycart.getText();
+//        System.out.println(oldValueOfCartButton);
+//        new WebDriverWait(driver, 8).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(Emptycart, oldValueOfCartButton)));
+//        String newValueOfCartButton = Emptycart.getText();
+//        System.out.println(newValueOfCartButton);
+//    }
+
+    ////
+    public void waitForCartToBeUpdated() {
+        // Wait for the value of the cart to change
+        String oldValueOfCartButton = UsefullFonctions.getInnerElementText(Emptycart);
+        System.out.println("the old value: " + oldValueOfCartButton);
+
+        WebDriverWait wait = new WebDriverWait(driver, 8);
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(Emptycart, oldValueOfCartButton)));
+
+        String newValueOfCartButton = UsefullFonctions.getInnerElementText(Emptycart);
+        System.out.println("the new value: " + newValueOfCartButton);
     }
-    public void WaitForTextToBeChanged(final WebElement element){
+
+    // Helper method to get the inner text of an element using JavaScriptExecutor
+
+
+    ///////
+
+    public void WaitForTextToBeChanged(final WebElement element) {
         try {
             String oldValueOfCTextOfWebElement = element.getText();
-            wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element,oldValueOfCTextOfWebElement)));
-        }
-        catch (Exception e){
+            wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element, oldValueOfCTextOfWebElement)));
+        } catch (Exception e) {
             System.out.println("Text of element didn't change");
         }
     }
 
-    public void clickOnCart(){
+    public void clickOnCart() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(filledCart)).click();
-        }
-        catch (Exception Ignored){
+        } catch (Exception Ignored) {
             driver.findElement((By) filledCart).click();
         }
     }
 
-    public void proceedToCheckout(){
+    public void proceedToCheckout() {
         try {
             proceedToCheckoutButton.click();
-        }
-        catch (Exception ignored){
+        } catch (Exception ignored) {
             wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButton)).click();
         }
     }
 
-
-
-    public void enterOrPickQuantity(final String quantity){
+    public void pickQuantity(int quantity) {
+        this.wait = new WebDriverWait(driver, 2);
+//        $x("//ul[@class='qty-list']//li[@class='qty-item']/span[@class='qty-item-btn ' and @data-qtyitem = '1']"); // 42 result
+//        "//div[@class='qty-box coffee-label-block-parent body-popup-overlay active']//span[text()='1'] // 1 is result
+//        //div[contains(@class,'body-popup-overlay active')]//span[text()='1']
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath(
+                        "//div[contains(@class,'body-popup-overlay active')]//span[text()='" + quantity + "']")));
         try {
-            this.wait = new WebDriverWait(driver, 2);
-            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//[@id='ta-quantity-selector__predefined-" + quantity + "']")));
-            button.click();
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        catch (Exception e){
+
+        button.click();
+    }
+
+    public void enterOrPickQuantity(final String quantity) {
+        try {
+//            this.wait = new WebDriverWait(driver, 2);
+            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//li/span[contains(@class,'qty-item-btn') and (text()=" + quantity + ")]")));
+            button.click();
+        } catch (Exception e) {
             WebElement input = wait.until(ExpectedConditions.elementToBeClickable(quantitySelector));
             input.sendKeys(quantity);
         }
@@ -200,8 +240,7 @@ public class NespressoCapsulesPage {
     public void closeCart() {
         try {
             driver.findElement(By.xpath("//button[@id='ta-mini-basket__close']")).click();
-        }
-        catch (Exception Ignored){
+        } catch (Exception Ignored) {
             wait.until(ExpectedConditions.elementToBeClickable(By.
                     xpath("//button[@id='ta-mini-basket__close']"))).click();
         }

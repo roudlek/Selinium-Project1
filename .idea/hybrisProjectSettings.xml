@@ -97,6 +97,11 @@
             <ModuleSettings />
           </value>
         </entry>
+        <entry key="UItestingSQLI">
+          <value>
+            <ModuleSettings />
+          </value>
+        </entry>
       </map>
     </option>
   </component>

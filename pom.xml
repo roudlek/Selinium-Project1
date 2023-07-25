@@ -3,11 +3,11 @@
 <modelVersion>4.0.0</modelVersion>
 
 <groupId>com.sqli.testauto</groupId>
-<artifactId>Selinium_Project1</artifactId>
+<artifactId>UItestingSQLI</artifactId>
 <version>1.0-SNAPSHOT</version>
 <packaging>jar</packaging>
 
-<name>Selinium_Project1</name>
+<name>UItestingSQLI</name>
 <url>http://maven.apache.org</url>
 
     <properties>
@@ -17,59 +17,23 @@
     </properties>
 
     <dependencies>
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.appium/java-client &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.appium</groupId>-->
-<!--            <artifactId>java-client</artifactId>-->
-<!--            <version>4.1.2</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-android-driver &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.seleniumhq.selenium</groupId>-->
-<!--            <artifactId>selenium-android-driver</artifactId>-->
-<!--            <version>2.39.0</version>-->
-<!--        </dependency>-->
-
-        <!--        &lt;!&ndash; JUnit 5 &ndash;&gt;-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-junit &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-junit</artifactId>-->
-<!--            <version>5.1.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-        <!--        Karate dependencies-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.intuit.karate/karate-junit4 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.intuit.karate</groupId>-->
-<!--            <artifactId>karate-junit4</artifactId>-->
-<!--            <version>1.4.0.RC3</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
 
 
 <!--karate dependencies-->
         <!-- https://mvnrepository.com/artifact/com.intuit.karate/karate-core -->
-        <dependency>
-            <groupId>com.intuit.karate</groupId>
-            <artifactId>karate-core</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.intuit.karate/karate-junit4 -->
-        <dependency>
-            <groupId>com.intuit.karate</groupId>
-            <artifactId>karate-junit4</artifactId>
-            <version>1.0.1</version>
-            <scope>test</scope>
-        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.intuit.karate</groupId>-->
-<!--            <artifactId>karate-apache</artifactId>-->
-<!--            <version>0.9.6</version>-->
+<!--            <artifactId>karate-core</artifactId>-->
+<!--            <version>1.0.1</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.intuit.karate/karate-junit4 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.intuit.karate</groupId>-->
+<!--            <artifactId>karate-junit4</artifactId>-->
+<!--            <version>1.0.1</version>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
+
 
 
         <!--        maven compiler plugin and properties of compiler didnt work-->
@@ -104,16 +68,16 @@
             <version>7.12.1</version>
         </dependency>
 <!--        this is for data excel, 2 dependencies that matches-->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>4.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>4.1.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-ooxml</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
         this is for webdriver using github-->
         <dependency>
@@ -121,12 +85,12 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.3.3</version>
         </dependency>
-        <dependency>
-            <groupId>com.browserstack</groupId>
-            <artifactId>browserstack-java-sdk</artifactId>
-            <version>LATEST</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.browserstack</groupId>-->
+<!--            <artifactId>browserstack-java-sdk</artifactId>-->
+<!--            <version>LATEST</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
     </dependencies>
     <build>
         <testResources>
@@ -158,7 +122,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Selinium_Project1</projectName>
+                            <projectName>UItestingSQLI</projectName>
                             <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
                             <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
                         </configuration>

@@ -5,7 +5,8 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = "src/test/resources/Features",
-        glue = {"nespressoStepDefinitionsPages"},
-        plugin = {"json:target/cucumber.json"})
+        glue = {"stepDefinitionPages"},
+        plugin = {"json:target/cucumber.json"},
+        tags = "@valid_Order")
 public class CucumberRunner extends AbstractTestNGCucumberTests {
 }
