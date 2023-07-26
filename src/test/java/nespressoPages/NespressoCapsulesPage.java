@@ -24,7 +24,7 @@ public class NespressoCapsulesPage {
     @FindBy(xpath = "//button[contains(@class,'MiniBasketButton--not-empty')]")
     WebElement filledCart;
     @FindBy(xpath = "//div[@data-block='minicart']//span[@class='items qty']//span[@class='counter-number']")
-    WebElement Emptycart;
+    WebElement emptyCart;
     @FindBy(className = "MiniBasketItemCategory__item-count']")
     WebElement cartCountElement;
     @FindBy(id = "ta-mini-basket__checkout")
@@ -166,13 +166,13 @@ public class NespressoCapsulesPage {
 
     public void waitForCartToBeUpdated() {
         // Wait for the value of the cart to change
-        String oldValueOfCartButton = getInnerElementText(Emptycart).trim();
+        String oldValueOfCartButton = getInnerElementText(emptyCart).trim();
         System.out.println("the old value: " + oldValueOfCartButton);
 
-        WebDriverWait wait = new WebDriverWait(driver, 8);
-        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(Emptycart, oldValueOfCartButton)));
+        WebDriverWait wait = new WebDriverWait(driver, 6);
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(emptyCart, oldValueOfCartButton)));
 
-        String newValueOfCartButton = getInnerElementText(Emptycart).trim();
+        String newValueOfCartButton = getInnerElementText(emptyCart).trim();
         System.out.println("the new value: " + newValueOfCartButton);
     }
 

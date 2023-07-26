@@ -1,27 +1,22 @@
 package stepDefinitionPages;
 
 import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import nespressoPages.NespressoCapsulesPage;
-import nespressoPages.UsefullFonctions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class productPageStepDefinition {
+public class capsulesPageStepDefinition {
     private WebDriver driver;
     private ChromeOptions option;
     private NespressoCapsulesPage nespressoCapsulesPage;
@@ -67,27 +62,7 @@ public class productPageStepDefinition {
         // Add code to add the specified quantity of the product capsule to the cart
     }
 
-    @Then("^Mini cart contains (.+) units of (.+) capsule$")
-    public void miniCartContainsUnitsOfProductCapsule(int quantity, String product) {
-        // Add code to verify that the mini cart contains the specified quantity of the product capsule
-        // For example, you can get the mini cart details and assert the quantity of the product in the cart.
-        // Replace the assertions below with the appropriate code for your application.
 
-//        int actualQuantity = getMiniCartQuantity(product);
-//        Assert.assertEquals(quantity, actualQuantity);
-    }
-
-    // Replace this method with the actual implementation to get the quantity of the product in the mini cart.
-//    private int getMiniCartQuantity(String product) {
-        // Add code to fetch the quantity of the specified product in the mini cart
-        // For example, you might interact with your application to get this information.
-        // For demonstration purposes, let's assume the mini cart quantity is hardcoded.
-//        if (product.equalsIgnoreCase("TOKYO VIVALTO LUNGO")) {
-//            return 10;
-//        } else {
-//            return 0;
-//        }
-//    }
     @After
     public void reinitializeSession() {
         driver.manage().deleteAllCookies();
